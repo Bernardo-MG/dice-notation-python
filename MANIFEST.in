@@ -1,0 +1,18 @@
+# Miscellany files
+include LICENSE
+include README.rst
+include Makefile
+include make.bat
+include tox.ini
+include requirements.txt
+include .coveragerc
+
+# Tests
+recursive-exclude tests *.pyc
+recursive-exclude tests *.pyo
+
+# Documentation
+recursive-include docs *
+recursive-exclude docs *.pyc
+recursive-exclude docs *.pyo
+prune docs/_build
