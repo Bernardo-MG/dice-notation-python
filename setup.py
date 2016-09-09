@@ -67,7 +67,7 @@ setup(
     license='MIT',
     url='https://github.com/Bernardo-MG/dice-notation-python',
     download_url='https://pypi.python.org/pypi/dice-notation',
-    keywords=['dice', 'rpg', 'parser'],
+    keywords=['dice', 'dice notation', 'rpg', 'parser'],
     platforms='any',
     classifiers=[
         'Development Status :: 3 - Alpha',

@@ -19,8 +19,8 @@ Code Quality
 ============ ===
 Report       Description
 ============ ===
-`Landscape`_ Coverage report
+`Landscape`_ Code quality report
 ============ ===
 
-.. _Coveralls: https://coveralls.io/github/Bernardo-MG/dice-notation
-.. _Landscape: https://landscape.io/github/Bernardo-MG/dice-notation/master
+.. _Coveralls: https://coveralls.io/github/Bernardo-MG/dice-notation-python
+.. _Landscape: https://landscape.io/github/Bernardo-MG/dice-notation-python/master
