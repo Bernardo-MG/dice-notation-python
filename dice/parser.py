@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-
 import sys
+
 sys.path.insert(0, "../..")
 
 if sys.version_info[0] >= 3:
@@ -46,6 +46,7 @@ class Parser(object):
             if not s:
                 continue
             yacc.parse(s)
+
 
 class Calc(Parser):
 
