@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import sys
 
+import ply.lex as lex
+import ply.yacc as yacc
+import os
+
 sys.path.insert(0, "../..")
 
 if sys.version_info[0] >= 3:
     raw_input = input
-
-import ply.lex as lex
-import ply.yacc as yacc
-import os
 
 
 class Parser(object):
