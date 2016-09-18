@@ -16,7 +16,7 @@ DISTDIR   = dist
  
 # Sets the .egg file path.
 # The file will be located at the project's root.
-EGGDIR    = dice.egg-info
+EGGDIR    = dice_notation.egg-info
 
 # Sets the tox folder path.
 # It will be the '.tox' folder.
