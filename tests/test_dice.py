@@ -25,7 +25,7 @@ class TestPlaceholder(unittest.TestCase):
         """
         Here the tests environment would be prepared.
         """
-        dice = Dice()
+        dice = Dice(1, 1)
 
     def test_true(self):
         """
