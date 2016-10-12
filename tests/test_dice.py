@@ -2,6 +2,8 @@
 
 import unittest
 
+import dice_notation
+
 """
 Placeholder tests.
 
