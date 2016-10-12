@@ -9,6 +9,11 @@ Dice classes.
 __author__ = 'Benardo Martínez Garrido'
 __license__ = 'MIT'
 
+try:
+    xrange
+except NameError:
+    xrange = range
+
 
 class Dice(object):
     """Represents a dice group"""
