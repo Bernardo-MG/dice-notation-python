@@ -2,6 +2,8 @@
 
 import unittest
 
+from dice_notation.dice import Dice
+
 """
 Placeholder tests.
 
@@ -23,7 +25,7 @@ class TestPlaceholder(unittest.TestCase):
         """
         Here the tests environment would be prepared.
         """
-        pass
+        dice = Dice()
 
     def test_true(self):
         """
