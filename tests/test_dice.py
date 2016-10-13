@@ -5,11 +5,7 @@ import unittest
 from dice_notation.dice import Dice
 
 """
-Placeholder tests.
-
-The following cases are tested:
-
-- A placeholder test that is always true passes
+Dice class tests.
 """
 
 __author__ = 'Bernardo Martínez Garrido'

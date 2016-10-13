@@ -5,6 +5,10 @@ import ply.lex as lex
 import ply.yacc as yacc
 import os
 
+from abc import ABCMeta, abstractmethod
+
+from dice import Dice
+
 sys.path.insert(0, "../..")
 
 if sys.version_info[0] >= 3:
@@ -12,6 +16,20 @@ if sys.version_info[0] >= 3:
 
 
 class Parser(object):
+    """
+    Interface for implementing parsers.
+    """
+    __metaclass__ = ABCMeta
+
+    def __init__(self):
+        pass
+
+    @abstractmethod
+    def parse(self, input):
+        raise NotImplementedError('The parse method must be implemented')
+
+
+class PlyParser(Parser):
     """
     Base class for a lexer/parser that has the rules defined as methods
     """
@@ -37,27 +55,20 @@ class Parser(object):
                   debugfile=self.debugfile,
                   tabmodule=self.tabmodule)
 
-    def run(self):
-        while 1:
-            try:
-                s = raw_input('calc > ')
-            except EOFError:
-                break
-            if not s:
-                continue
-            yacc.parse(s)
+    def parse(self, input):
+        return yacc.parse(input)
 
 
-class Calc(Parser):
+class DiceParser(PlyParser):
 
     tokens = (
-        'DIGIT', 'SEPARATOR', 'ADD', 'SUB'
+        'DIGIT', 'DSEPARATOR', 'ADD', 'SUB'
     )
 
     # Tokens
 
     t_ADD = r'\+'
-    t_SEPARATOR = r'(d|D)'
+    t_DSEPARATOR = r'(d|D)'
     t_SUB = r'-'
 
     def t_DIGIT(self, t):
@@ -82,7 +93,11 @@ class Calc(Parser):
 
     def p_statement_expr(self, p):
         'statement : expression'
-        print(p[1])
+        p[0] = p[1]
+
+    def p_expression_dice(self, p):
+        'expression : DIGIT DSEPARATOR DIGIT'
+        p[0] = Dice(p[1], p[3])
 
     def p_expression_binop(self, p):
         """
@@ -105,6 +120,3 @@ class Calc(Parser):
         else:
             print("Syntax error at EOF")
 
-if __name__ == '__main__':
-    calc = Calc()
-    calc.run()
