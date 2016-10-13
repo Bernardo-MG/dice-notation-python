@@ -7,7 +7,7 @@ import os
 
 from abc import ABCMeta, abstractmethod
 
-from dice import Dice
+from dice_notation.dice import Dice
 
 sys.path.insert(0, "../..")
 

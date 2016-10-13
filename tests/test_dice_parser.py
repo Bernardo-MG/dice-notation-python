@@ -2,7 +2,6 @@
 
 import unittest
 
-from dice_notation.dice import Dice
 from dice_notation.parser import DiceParser
 
 """
