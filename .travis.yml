@@ -36,6 +36,8 @@ before_install:
 install:
   # tox is required for the tests
   - pip install tox
+  # sphinx is required for the docs
+  - pip install sphinx
 script:
   # Code is checked
   - ~/.scripts/python/run_tests.sh true check
