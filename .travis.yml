@@ -27,7 +27,7 @@ matrix:
 
 before_install:
   # Gets scripts
-  - git clone -b v0.2.0 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  - git clone -b v0.2.11 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
@@ -47,4 +47,5 @@ script:
   - ~/.scripts/python/run_tests.sh $DO_COVERAGE coverage
 after_success:
   # Documentation deployment
+  - ~/.scripts/sphinx/build-html.sh $DO_DEPLOY_DOCS docs
   - ~/.scripts/rtd/deploy.sh $DO_DEPLOY_DOCS dice-notation
