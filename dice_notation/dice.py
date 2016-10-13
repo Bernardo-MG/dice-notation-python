@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 
 from random import randint
 
@@ -9,9 +10,7 @@ Dice classes.
 __author__ = 'Benardo Martínez Garrido'
 __license__ = 'MIT'
 
-try:
-    xrange
-except NameError:
+if sys.version_info[0] >= 3:
     xrange = range
 
 

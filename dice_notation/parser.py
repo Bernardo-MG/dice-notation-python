@@ -9,11 +9,6 @@ from abc import ABCMeta, abstractmethod
 
 from dice_notation.dice import Dice
 
-sys.path.insert(0, "../..")
-
-if sys.version_info[0] >= 3:
-    raw_input = input
-
 
 class Parser(object):
     """
