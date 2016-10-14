@@ -38,6 +38,8 @@ install:
   - pip install tox
   # sphinx is required for the docs
   - pip install sphinx
+  # Dependencies
+  - pip install --upgrade -r requirements.txt
 script:
   # Code is checked
   - ~/.scripts/python/run_tests.sh true check
