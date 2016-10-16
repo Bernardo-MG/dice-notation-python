@@ -53,7 +53,7 @@ class TestParseNumber(unittest.TestCase):
         self.assertEqual(5, result)
 
 
-class TestBinaryOperation(unittest.TestCase):
+class TestNumericBinaryOperation(unittest.TestCase):
     """
     Tests that the parser can work with pure numeric operations.
     """
@@ -68,7 +68,7 @@ class TestBinaryOperation(unittest.TestCase):
         """
         Tests that numeric additions are done correctly.
         """
-        result = self.parser.parse("1+2").roll()
+        result = self.parser.parse("1+2")
 
         self.assertEqual(3, result)
 
@@ -76,6 +76,6 @@ class TestBinaryOperation(unittest.TestCase):
         """
         Tests that numeric subtractions are done correctly.
         """
-        result = self.parser.parse("3-1").roll()
+        result = self.parser.parse("3-1")
 
         self.assertEqual(2, result)

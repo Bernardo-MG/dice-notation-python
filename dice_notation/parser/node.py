@@ -10,16 +10,16 @@ class ConstantNode(Rollable):
         self._constant = constant
 
     def __add__(self, other):
-        return self.constant + other
+        return ConstantNode(self.constant + other)
 
     def __sub__(self, other):
-        return other - self.constant
+        return ConstantNode(other - self.constant)
 
     def __radd__(self, other):
-        return self.constant + other
+        return ConstantNode(self.constant + other)
 
     def __rsub__(self, other):
-        return other - self.constant
+        return ConstantNode(other - self.constant)
 
     def __lt__(self, other):
         return self.constant < other
@@ -48,6 +48,9 @@ class ConstantNode(Rollable):
             return self.constant >= other
         else:
             return NotImplemented
+
+    def __int__(self):
+        return self.constant
 
     @property
     def constant(self):
@@ -101,9 +104,16 @@ class DiceNode(RollableNode):
 class BinaryOperationNode(Rollable):
 
     def __init__(self, function, left, right):
+        super(BinaryOperationNode, self).__init__()
         self._function = function
         self._left = left
         self._right = right
+
+    def __eq__(self, other):
+        return self.operate() == other
+
+    def __ne__(self, other):
+        return self.operate() != other
 
     @property
     def function(self):
@@ -129,5 +139,8 @@ class BinaryOperationNode(Rollable):
     def right(self, right):
         self._right = right
 
-    def roll(self):
+    def operate(self):
         return self.function(self.left, self.right)
+
+    def roll(self):
+        return self.operate()
