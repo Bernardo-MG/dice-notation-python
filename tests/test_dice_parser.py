@@ -48,7 +48,7 @@ class TestParseNumber(unittest.TestCase):
         """
         Tests that numeric additions are done correctly.
         """
-        result = self.parser.parse("5").roll()
+        result = self.parser.parse("5")
 
         self.assertEqual(5, result)
 

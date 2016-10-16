@@ -6,6 +6,7 @@ from dice_notation.dice import Dice, Rollable
 class ConstantNode(Rollable):
 
     def __init__(self, constant):
+        super(ConstantNode, self).__init__()
         self._constant = constant
 
     def __add__(self, other):
@@ -19,6 +20,34 @@ class ConstantNode(Rollable):
 
     def __rsub__(self, other):
         return other - self.constant
+
+    def __lt__(self, other):
+        return self.constant < other
+
+    def __le__(self, other):
+        if isinstance(other, ConstantNode):
+            return self.constant <= other.constant
+        elif isinstance(other, (int, float)):
+            return self.constant <= other
+        else:
+            return NotImplemented
+
+    def __eq__(self, other):
+        return self.constant == other
+
+    def __ne__(self, other):
+        return self.constant != other
+
+    def __gt__(self, other):
+        return self.constant > other
+
+    def __ge__(self, other):
+        if isinstance(other, ConstantNode):
+            return self.constant >= other.constant
+        elif isinstance(other, (int, float)):
+            return self.constant >= other
+        else:
+            return NotImplemented
 
     @property
     def constant(self):
@@ -35,6 +64,7 @@ class ConstantNode(Rollable):
 class RollableNode(Rollable):
 
     def __init__(self, rollable):
+        super(RollableNode, self).__init__()
         self._rollable = rollable
 
     @property
