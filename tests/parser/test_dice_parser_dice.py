@@ -68,14 +68,14 @@ class TestDiceBinaryOperation(unittest.TestCase):
         """
         result = self.parser.parse("1d6+2d20")
 
-        diceLeft = result.left
-        diceRight = result.right
+        dice_left = result.left
+        dice_right = result.right
 
-        self.assertEqual(1, diceLeft.quantity)
-        self.assertEqual(6, diceLeft.sides)
+        self.assertEqual(1, dice_left.quantity)
+        self.assertEqual(6, dice_left.sides)
 
-        self.assertEqual(2, diceRight.quantity)
-        self.assertEqual(20, diceRight.sides)
+        self.assertEqual(2, dice_right.quantity)
+        self.assertEqual(20, dice_right.sides)
 
     def test_add_value(self):
         """
@@ -91,14 +91,14 @@ class TestDiceBinaryOperation(unittest.TestCase):
         """
         result = self.parser.parse("3d12-1D6")
 
-        diceLeft = result.left
-        diceRight = result.right
+        dice_left = result.left
+        dice_right = result.right
 
-        self.assertEqual(3, diceLeft.quantity)
-        self.assertEqual(12, diceLeft.sides)
+        self.assertEqual(3, dice_left.quantity)
+        self.assertEqual(12, dice_left.sides)
 
-        self.assertEqual(1, diceRight.quantity)
-        self.assertEqual(6, diceRight.sides)
+        self.assertEqual(1, dice_right.quantity)
+        self.assertEqual(6, dice_right.sides)
 
     def test_sub_value(self):
         """
