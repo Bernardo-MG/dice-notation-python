@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+
 import sys
 
 from random import randint
+
+from abc import ABCMeta, abstractmethod
 
 """
 Dice classes.
@@ -14,8 +17,24 @@ if sys.version_info[0] >= 3:
     xrange = range
 
 
-class Dice(object):
-    """Represents a dice group"""
+class Rollable(object):
+    """
+    Interface for rollable classes.
+    """
+    __metaclass__ = ABCMeta
+
+    def __init__(self):
+        pass
+
+    @abstractmethod
+    def roll(self):
+        raise NotImplementedError('The roll method must be implemented')
+
+
+class Dice(Rollable):
+    """
+    Represents a dice group
+    """
 
     def __init__(self, quantity, sides):
         self._quantity = quantity
