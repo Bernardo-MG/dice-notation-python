@@ -70,6 +70,18 @@ class RollableNode(Rollable):
         super(RollableNode, self).__init__()
         self._rollable = rollable
 
+    def __add__(self, other):
+        return ConstantNode(self.roll() + other)
+
+    def __sub__(self, other):
+        return ConstantNode(other - self.roll())
+
+    def __radd__(self, other):
+        return ConstantNode(self.roll() + other)
+
+    def __rsub__(self, other):
+        return ConstantNode(other - self.roll())
+
     @property
     def rollable(self):
         """

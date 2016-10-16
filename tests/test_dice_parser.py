@@ -5,7 +5,7 @@ import unittest
 from dice_notation.parser.dice import DiceParser
 
 """
-Dice parser tests.
+Dice parser tests for expressions only containing dice.
 """
 
 __author__ = 'Bernardo Martínez Garrido'
@@ -32,8 +32,26 @@ class TestParseSimpleDice(unittest.TestCase):
         self.assertEqual(1, dice.quantity)
         self.assertEqual(6, dice.sides)
 
+    def test_simpleDice_alternativeSeparator(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        dice = self.parser.parse("1D6").dice
 
-class TestParseNumber(unittest.TestCase):
+        self.assertEqual(1, dice.quantity)
+        self.assertEqual(6, dice.sides)
+
+    def test_minimalDice(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        dice = self.parser.parse("1d1").dice
+
+        self.assertEqual(1, dice.quantity)
+        self.assertEqual(1, dice.sides)
+
+
+class TestDiceBinaryOperation(unittest.TestCase):
     """
     Tests that the parser can work with pure numeric operations.
     """
@@ -44,38 +62,48 @@ class TestParseNumber(unittest.TestCase):
         """
         self.parser = DiceParser()
 
-    def test_number(self):
+    def test_add_dice(self):
         """
         Tests that numeric additions are done correctly.
         """
-        result = self.parser.parse("5")
+        result = self.parser.parse("1d6+2d20")
 
-        self.assertEqual(5, result)
+        diceLeft = result.left.dice
+        diceRight = result.right.dice
 
+        self.assertEqual(1, diceLeft.quantity)
+        self.assertEqual(6, diceLeft.sides)
 
-class TestNumericBinaryOperation(unittest.TestCase):
-    """
-    Tests that the parser can work with pure numeric operations.
-    """
+        self.assertEqual(2, diceRight.quantity)
+        self.assertEqual(20, diceRight.sides)
 
-    def setUp(self):
-        """
-        Here the tests environment would be prepared.
-        """
-        self.parser = DiceParser()
-
-    def test_add(self):
+    def test_add_value(self):
         """
         Tests that numeric additions are done correctly.
         """
-        result = self.parser.parse("1+2")
+        result = self.parser.parse("1d6+2d20")
 
-        self.assertEqual(3, result)
+        result.roll()
 
-    def test_sub(self):
+    def test_sub_dice(self):
         """
         Tests that numeric subtractions are done correctly.
         """
-        result = self.parser.parse("3-1")
+        result = self.parser.parse("3d12-1D6")
 
-        self.assertEqual(2, result)
+        diceLeft = result.left.dice
+        diceRight = result.right.dice
+
+        self.assertEqual(3, diceLeft.quantity)
+        self.assertEqual(12, diceLeft.sides)
+
+        self.assertEqual(1, diceRight.quantity)
+        self.assertEqual(6, diceRight.sides)
+
+    def test_sub_value(self):
+        """
+        Tests that numeric subtractions are done correctly.
+        """
+        result = self.parser.parse("3d12-1D6")
+
+        result.roll()
