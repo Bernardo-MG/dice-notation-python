@@ -32,15 +32,6 @@ class TestParseSimpleDice(unittest.TestCase):
         self.assertEqual(1, dice.quantity)
         self.assertEqual(6, dice.sides)
 
-    def test_emptyDice(self):
-        """
-        Tests that a simple dice notation can be parsed.
-        """
-        dice = self.parser.parse("0d6")
-
-        self.assertEqual(0, dice.quantity)
-        self.assertEqual(6, dice.sides)
-
     def test_simpleDice_alternativeSeparator(self):
         """
         Tests that a simple dice notation can be parsed.
@@ -50,7 +41,7 @@ class TestParseSimpleDice(unittest.TestCase):
         self.assertEqual(1, dice.quantity)
         self.assertEqual(6, dice.sides)
 
-    def test_minimalDice(self):
+    def test_onesDice(self):
         """
         Tests that a simple dice notation can be parsed.
         """
@@ -58,6 +49,33 @@ class TestParseSimpleDice(unittest.TestCase):
 
         self.assertEqual(1, dice.quantity)
         self.assertEqual(1, dice.sides)
+
+    def test_zeroQuantity(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        dice = self.parser.parse("0d6")
+
+        self.assertEqual(0, dice.quantity)
+        self.assertEqual(6, dice.sides)
+
+    def test_zeroSides(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        dice = self.parser.parse("1d0")
+
+        self.assertEqual(1, dice.quantity)
+        self.assertEqual(0, dice.sides)
+
+    def test_zerosDice(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        dice = self.parser.parse("0d0")
+
+        self.assertEqual(0, dice.quantity)
+        self.assertEqual(0, dice.sides)
 
 
 class TestDiceBinaryOperation(unittest.TestCase):
