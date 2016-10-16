@@ -2,7 +2,7 @@
 
 import unittest
 
-from dice_notation.parser import DiceParser
+from dice_notation.parser.dice import DiceParser
 
 """
 Dice parser tests.
