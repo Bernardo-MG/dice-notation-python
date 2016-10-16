@@ -17,7 +17,7 @@ class Parser(object):
         pass
 
     @abstractmethod
-    def parse(self, input):
+    def parse(self, value):
         raise NotImplementedError('The parse method must be implemented')
 
 
@@ -47,5 +47,5 @@ class PlyParser(Parser):
                   debugfile=self.debugfile,
                   tabmodule=self.tabmodule)
 
-    def parse(self, input):
-        return yacc.parse(input)
+    def parse(self, value):
+        return yacc.parse(value)
