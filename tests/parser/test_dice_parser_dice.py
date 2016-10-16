@@ -32,6 +32,15 @@ class TestParseSimpleDice(unittest.TestCase):
         self.assertEqual(1, dice.quantity)
         self.assertEqual(6, dice.sides)
 
+    def test_emptyDice(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        dice = self.parser.parse("0d6")
+
+        self.assertEqual(0, dice.quantity)
+        self.assertEqual(6, dice.sides)
+
     def test_simpleDice_alternativeSeparator(self):
         """
         Tests that a simple dice notation can be parsed.
