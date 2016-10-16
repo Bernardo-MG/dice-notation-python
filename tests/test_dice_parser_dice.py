@@ -27,7 +27,7 @@ class TestParseSimpleDice(unittest.TestCase):
         """
         Tests that a simple dice notation can be parsed.
         """
-        dice = self.parser.parse("1d6").dice
+        dice = self.parser.parse("1d6")
 
         self.assertEqual(1, dice.quantity)
         self.assertEqual(6, dice.sides)
@@ -36,7 +36,7 @@ class TestParseSimpleDice(unittest.TestCase):
         """
         Tests that a simple dice notation can be parsed.
         """
-        dice = self.parser.parse("1D6").dice
+        dice = self.parser.parse("1D6")
 
         self.assertEqual(1, dice.quantity)
         self.assertEqual(6, dice.sides)
@@ -45,7 +45,7 @@ class TestParseSimpleDice(unittest.TestCase):
         """
         Tests that a simple dice notation can be parsed.
         """
-        dice = self.parser.parse("1d1").dice
+        dice = self.parser.parse("1d1")
 
         self.assertEqual(1, dice.quantity)
         self.assertEqual(1, dice.sides)
@@ -68,8 +68,8 @@ class TestDiceBinaryOperation(unittest.TestCase):
         """
         result = self.parser.parse("1d6+2d20")
 
-        diceLeft = result.left.dice
-        diceRight = result.right.dice
+        diceLeft = result.left
+        diceRight = result.right
 
         self.assertEqual(1, diceLeft.quantity)
         self.assertEqual(6, diceLeft.sides)
@@ -91,8 +91,8 @@ class TestDiceBinaryOperation(unittest.TestCase):
         """
         result = self.parser.parse("3d12-1D6")
 
-        diceLeft = result.left.dice
-        diceRight = result.right.dice
+        diceLeft = result.left
+        diceRight = result.right
 
         self.assertEqual(3, diceLeft.quantity)
         self.assertEqual(12, diceLeft.sides)

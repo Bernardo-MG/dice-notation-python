@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dice_notation.dice import Dice, Rollable
+from dice_notation.dice import Dice, RollableDice, Rollable
 
 
 class ConstantNode(Rollable):
@@ -99,18 +99,26 @@ class RollableNode(Rollable):
         return self.rollable.roll()
 
 
-class DiceNode(RollableNode):
+class DiceNode(RollableNode, Dice):
 
     def __init__(self, quantity, sides):
-        super(DiceNode, self).__init__(Dice(quantity, sides))
+        super(DiceNode, self).__init__(RollableDice(quantity, sides))
 
     @property
-    def dice(self):
-        return self.rollable
+    def quantity(self):
+        return self.rollable.quantity
 
-    @dice.setter
-    def dice(self, dice):
-        self.rollable = dice
+    @quantity.setter
+    def quantity(self, quantity):
+        self.rollable.quantity(quantity)
+
+    @property
+    def sides(self):
+        return self.rollable.sides
+
+    @sides.setter
+    def sides(self, sides):
+        self.rollable.sides(sides)
 
 
 class BinaryOperationNode(Rollable):

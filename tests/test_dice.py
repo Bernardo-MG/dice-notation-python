@@ -2,7 +2,7 @@
 
 import unittest
 
-from dice_notation.dice import Dice
+from dice_notation.dice import RollableDice
 
 """
 Dice class tests.
@@ -27,7 +27,7 @@ class TestRoll(unittest.TestCase):
         """
         Tests that the minimal possible dice returns 1.
         """
-        dice = Dice(1, 1)
+        dice = RollableDice(1, 1)
 
         self.assertEqual(1, dice.roll())
 
@@ -35,7 +35,7 @@ class TestRoll(unittest.TestCase):
         """
         Tests that quantity of dice is multiplied by the sides when rolling.
         """
-        dice = Dice(3, 1)
+        dice = RollableDice(3, 1)
 
         self.assertEqual(3, dice.roll())
 
@@ -43,7 +43,7 @@ class TestRoll(unittest.TestCase):
         """
         Tests that the result of rolling a die is kept in the expected range.
         """
-        dice = Dice(1, 6)
+        dice = RollableDice(1, 6)
 
         roll = dice.roll()
 
@@ -55,7 +55,7 @@ class TestRoll(unittest.TestCase):
         Tests that the result of rolling multiple dice is kept in the expected
         range.
         """
-        dice = Dice(3, 6)
+        dice = RollableDice(3, 6)
 
         roll = dice.roll()
 

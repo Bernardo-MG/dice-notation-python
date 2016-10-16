@@ -35,10 +35,11 @@ class Dice(Rollable):
     """
     Represents a dice group
     """
+    __metaclass__ = ABCMeta
 
-    def __init__(self, quantity, sides):
-        self._quantity = quantity
-        self._sides = sides
+    def __init__(self):
+        super(Dice, self).__init__()
+        pass
 
     @property
     def quantity(self):
@@ -47,11 +48,11 @@ class Dice(Rollable):
 
         :return: the number of dice
         """
-        return self._quantity
+        raise NotImplementedError('The quantity getter must be implemented')
 
     @quantity.setter
     def quantity(self, quantity):
-        self._quantity = quantity
+        raise NotImplementedError('The quantity setter must be implemented')
 
     @property
     def sides(self):
@@ -62,6 +63,33 @@ class Dice(Rollable):
 
         :return: the number of sides
         """
+        raise NotImplementedError('The sides getter must be implemented')
+
+    @sides.setter
+    def sides(self, sides):
+        raise NotImplementedError('The sides setter must be implemented')
+
+
+class RollableDice(Rollable):
+    """
+    Represents a dice group
+    """
+
+    def __init__(self, quantity, sides):
+        super(RollableDice, self).__init__()
+        self._quantity = quantity
+        self._sides = sides
+
+    @property
+    def quantity(self):
+        return self._quantity
+
+    @quantity.setter
+    def quantity(self, quantity):
+        self._quantity = quantity
+
+    @property
+    def sides(self):
         return self._sides
 
     @sides.setter
