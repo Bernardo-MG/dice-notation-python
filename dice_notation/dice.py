@@ -39,6 +39,13 @@ class Dice(Rollable):
         super(Dice, self).__init__()
         pass
 
+    def __str__(self):
+        return '%sd%s' % (self.quantity, self.sides)
+
+    def __repr__(self):
+        return '<class %s>(quantity=%r, sides=%r)' % \
+               (self.__class__.__name__, self.quantity, self.sides)
+
     @property
     def quantity(self):
         """

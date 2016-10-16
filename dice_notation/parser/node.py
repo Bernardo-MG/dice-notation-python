@@ -51,6 +51,13 @@ class ConstantNode(Rollable):
     def __int__(self):
         return self.constant
 
+    def __str__(self):
+        return '%s' % (self._constant)
+
+    def __repr__(self):
+        return '<class %s>(constant=%r)' % \
+               (self.__class__.__name__, self._constant)
+
     @property
     def constant(self):
         return self._constant
@@ -80,6 +87,13 @@ class RollableNode(Rollable):
     def __rsub__(self, other):
         return ConstantNode(other - self.roll())
 
+    def __str__(self):
+        return '%s' % (self._rollable)
+
+    def __repr__(self):
+        return '<class %s>(rollable=%r)' % \
+               (self.__class__.__name__, self._rollable)
+
     @property
     def rollable(self):
         """
@@ -100,6 +114,13 @@ class RollableNode(Rollable):
 class DiceNode(RollableNode, Dice):
     def __init__(self, quantity, sides):
         super(DiceNode, self).__init__(RollableDice(quantity, sides))
+
+    def __str__(self):
+        return '%sd%s' % (self.quantity, self.sides)
+
+    def __repr__(self):
+        return '<class %s>(quantity=%r, sides=%r)' % \
+               (self.__class__.__name__, self.quantity, self.sides)
 
     @property
     def quantity(self):
@@ -125,11 +146,52 @@ class BinaryOperationNode(Rollable):
         self._left = left
         self._right = right
 
+    def __add__(self, other):
+        return ConstantNode(self.operate() + other)
+
+    def __sub__(self, other):
+        return ConstantNode(other - self.operate())
+
+    def __radd__(self, other):
+        return ConstantNode(self.operate() + other)
+
+    def __rsub__(self, other):
+        return ConstantNode(other - self.operate())
+
+    def __lt__(self, other):
+        return self.operate() < other
+
+    def __le__(self, other):
+        if isinstance(other, ConstantNode):
+            return self.operate() <= other.constant
+        elif isinstance(other, (int, float)):
+            return self.operate() <= other
+        else:
+            return NotImplemented
+
     def __eq__(self, other):
         return self.operate() == other
 
     def __ne__(self, other):
         return self.operate() != other
+
+    def __gt__(self, other):
+        return self.operate() > other
+
+    def __ge__(self, other):
+        if isinstance(other, ConstantNode):
+            return self.operate() >= other.constant
+        elif isinstance(other, (int, float)):
+            return self.operate() >= other
+        else:
+            return NotImplemented
+
+    def __str__(self):
+        return '%s %s %s' % (self._left, self._function, self._right)
+
+    def __repr__(self):
+        return '<class %s>(function=%r, left=%r, right=%r)' % \
+               (self.__class__.__name__, self._function, self._left, self._right)
 
     @property
     def function(self):
