@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import os
+from abc import ABCMeta, abstractmethod
+
 import ply.lex as lex
 import ply.yacc as yacc
-import os
-
-from abc import ABCMeta, abstractmethod
 
 
 class Parser(object):
@@ -33,7 +33,7 @@ class PlyParser(Parser):
         self.names = {}
         try:
             modname = os.path.split(os.path.splitext(__file__)[0])[
-                1] + "_" + self.__class__.__name__
+                          1] + "_" + self.__class__.__name__
         except:
             modname = "parser" + "_" + self.__class__.__name__
         self.debugfile = modname + ".dbg"

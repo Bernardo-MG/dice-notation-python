@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from dice_notation.parser.common import PlyParser
-from dice_notation.parser.node import BinaryOperationNode, ConstantNode, DiceNode
 from operator import add, sub
+
+from dice_notation.parser.common import PlyParser
+from dice_notation.parser.node import BinaryOperationNode, ConstantNode, \
+                                        DiceNode
 
 
 class DiceParser(PlyParser):

@@ -4,7 +4,6 @@ from dice_notation.dice import Dice, RollableDice, Rollable
 
 
 class ConstantNode(Rollable):
-
     def __init__(self, constant):
         super(ConstantNode, self).__init__()
         self._constant = constant
@@ -65,7 +64,6 @@ class ConstantNode(Rollable):
 
 
 class RollableNode(Rollable):
-
     def __init__(self, rollable):
         super(RollableNode, self).__init__()
         self._rollable = rollable
@@ -100,7 +98,6 @@ class RollableNode(Rollable):
 
 
 class DiceNode(RollableNode, Dice):
-
     def __init__(self, quantity, sides):
         super(DiceNode, self).__init__(RollableDice(quantity, sides))
 
@@ -122,7 +119,6 @@ class DiceNode(RollableNode, Dice):
 
 
 class BinaryOperationNode(Rollable):
-
     def __init__(self, function, left, right):
         super(BinaryOperationNode, self).__init__()
         self._function = function

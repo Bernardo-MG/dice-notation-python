@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import sys
-
-from random import randint
-
 from abc import ABCMeta, abstractmethod
+from random import randint
 
 """
 Dice classes.
