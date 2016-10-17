@@ -59,7 +59,10 @@ class DiceParser(PlyParser):
 
     def p_expression_digit(self, p):
         'expression : DIGIT'
-        p[0] = ConstantNode(p[1])
+        if isinstance(p[1], ConstantNode):
+            p[0] = p[1]
+        else:
+            p[0] = ConstantNode(p[1])
 
     def p_error(self, p):
         if p:

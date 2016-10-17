@@ -7,6 +7,10 @@ class ConstantNode(Rollable):
     def __init__(self, constant):
         super(ConstantNode, self).__init__()
         self._constant = constant
+        # If it received a constant node this is unwrapped
+        # TODO: Maybe the problem should be fixed somewhere else
+        while isinstance(self._constant, ConstantNode):
+            self._constant = constant.constant
 
     def __add__(self, other):
         return ConstantNode(self.constant + other)
