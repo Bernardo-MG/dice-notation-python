@@ -12,16 +12,34 @@ __author__ = 'Bernardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class TestRoll(unittest.TestCase):
+class TestMinimalRoll(unittest.TestCase):
     """
     Tests the Dice roll method.
     """
 
-    def setUp(self):
+    def test_empty_rolls0(self):
         """
-        Here the tests environment would be prepared.
+        Tests that the minimal possible dice returns 1.
         """
-        pass
+        dice = RollableDice(0, 0)
+
+        self.assertEqual(0, dice.roll())
+
+    def test_noQuantity_rolls0(self):
+        """
+        Tests that the minimal possible dice returns 1.
+        """
+        dice = RollableDice(0, 6)
+
+        self.assertEqual(0, dice.roll())
+
+    def test_noSides_rolls0(self):
+        """
+        Tests that the minimal possible dice returns 1.
+        """
+        dice = RollableDice(1, 0)
+
+        self.assertEqual(0, dice.roll())
 
     def test_minimal_rolls1(self):
         """
@@ -30,6 +48,12 @@ class TestRoll(unittest.TestCase):
         dice = RollableDice(1, 1)
 
         self.assertEqual(1, dice.roll())
+
+
+class TestRoll(unittest.TestCase):
+    """
+    Tests the Dice roll method.
+    """
 
     def test_multipleDice_multiplies(self):
         """
@@ -61,3 +85,42 @@ class TestRoll(unittest.TestCase):
 
         self.assertTrue(roll >= dice.quantity)
         self.assertTrue(roll <= (dice.quantity * dice.sides))
+
+
+
+class TestRollInvalid(unittest.TestCase):
+    """
+    Tests the Dice roll method.
+    """
+
+    def test_negativeQuantity(self):
+        """
+        Tests that quantity of dice is multiplied by the sides when rolling.
+        """
+        dice = RollableDice(-1, 1)
+
+        self.assertEqual(0, dice.roll())
+
+    def test_negativeSides(self):
+        """
+        Tests that quantity of dice is multiplied by the sides when rolling.
+        """
+        dice = RollableDice(1, -1)
+
+        self.assertEqual(0, dice.roll())
+
+    def test_noneQuantity(self):
+        """
+        Tests that quantity of dice is multiplied by the sides when rolling.
+        """
+        dice = RollableDice(None, 1)
+
+        self.assertEqual(0, dice.roll())
+
+    def test_noneSides(self):
+        """
+        Tests that quantity of dice is multiplied by the sides when rolling.
+        """
+        dice = RollableDice(1, None)
+
+        self.assertEqual(0, dice.roll())

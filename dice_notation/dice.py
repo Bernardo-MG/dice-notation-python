@@ -104,7 +104,8 @@ class RollableDice(Rollable):
     def roll(self):
         result = 0
 
-        for x in xrange(self._quantity):
-            result += randint(1, self._sides)
+        if self.quantity and self.sides and self.sides > 0:
+            for x in xrange(self._quantity):
+                result += randint(1, self._sides)
 
         return result
