@@ -58,3 +58,35 @@ class TestNumericBinaryOperation(unittest.TestCase):
         result = self.parser.parse("3-1")
 
         self.assertEqual(2, result)
+
+    def test_longAdd(self):
+        """
+        Tests that numeric additions are done correctly.
+        """
+        result = self.parser.parse("1+2+3+4+5")
+
+        self.assertEqual(15, result)
+
+    def test_longSub(self):
+        """
+        Tests that numeric additions are done correctly.
+        """
+        result = self.parser.parse("1-2-3-4-5")
+
+        self.assertEqual(-13, result)
+
+    def test_addAndSub(self):
+        """
+        Tests that numeric additions are done correctly.
+        """
+        result = self.parser.parse("1+2-3")
+
+        self.assertEqual(0, result)
+
+    def test_subAndAdd(self):
+        """
+        Tests that numeric subtractions are done correctly.
+        """
+        result = self.parser.parse("3-1+2")
+
+        self.assertEqual(4, result)
