@@ -8,9 +8,13 @@ from dice_notation.parser.node import BinaryOperationNode, ConstantNode, \
 
 
 class DiceParser(PlyParser):
+
     tokens = (
         'DIGIT', 'DSEPARATOR', 'ADD', 'SUB'
     )
+
+    def __init__(self):
+        super(DiceParser, self).__init__()
 
     # Tokens
 

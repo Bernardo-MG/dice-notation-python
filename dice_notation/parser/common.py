@@ -29,6 +29,7 @@ class PlyParser(Parser):
     precedence = ()
 
     def __init__(self, **kw):
+        super(PlyParser, self).__init__()
         self.debug = kw.get('debug', 0)
         self.names = {}
         try:
