@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from operator import add, sub
 
 from dice_notation.parser.common import PlyParser
@@ -15,6 +17,7 @@ class DiceParser(PlyParser):
 
     def __init__(self):
         super(DiceParser, self).__init__()
+        self._logger = logging.getLogger("DiceParser")
 
     # Tokens
 
@@ -45,10 +48,12 @@ class DiceParser(PlyParser):
     def p_statement_expr(self, p):
         'statement : expression'
         p[0] = p[1]
+        self._logger.debug("Statement %s", p[0])
 
     def p_expression_dice(self, p):
         'expression : DIGIT DSEPARATOR DIGIT'
         p[0] = DiceNode(p[1], p[3])
+        self._logger.debug("Dice %s", p[0])
 
     def p_expression_binop(self, p):
         """
@@ -60,6 +65,7 @@ class DiceParser(PlyParser):
             p[0] = BinaryOperationNode(add, p[1], p[3])
         elif p[2] == '-':
             p[0] = BinaryOperationNode(sub, p[1], p[3])
+        self._logger.debug("Binary operation %s", p[0])
 
     def p_expression_digit(self, p):
         'expression : DIGIT'
@@ -67,6 +73,7 @@ class DiceParser(PlyParser):
             p[0] = p[1]
         else:
             p[0] = ConstantNode(p[1])
+        self._logger.debug("Constant %s", p[0])
 
     def p_error(self, p):
         if p:

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import logging
 from dice_notation.dice import Dice, RollableDice, Rollable
 
 
@@ -13,10 +14,10 @@ class ConstantNode(Rollable):
             self._constant = constant.constant
 
     def __add__(self, other):
-        return ConstantNode(self.constant + other)
+        return ConstantNode(other + self.constant)
 
     def __sub__(self, other):
-        return ConstantNode(other - self.constant)
+        return ConstantNode(self.constant - other)
 
     def __radd__(self, other):
         return ConstantNode(self.constant + other)
@@ -146,21 +147,30 @@ class DiceNode(RollableNode, Dice):
 class BinaryOperationNode(Rollable):
     def __init__(self, function, left, right):
         super(BinaryOperationNode, self).__init__()
+        self._logger = logging.getLogger(self.__class__.__name__)
         self._function = function
         self._left = left
         self._right = right
 
     def __add__(self, other):
-        return ConstantNode(self.operate() + other)
+        value = self.operate()
+        self._logger.debug("%s + %s", value, other)
+        return ConstantNode(other + value)
 
     def __sub__(self, other):
-        return ConstantNode(other - self.operate())
+        value = self.operate()
+        self._logger.debug("%s - %s", other, value)
+        return ConstantNode(value - other)
 
     def __radd__(self, other):
-        return ConstantNode(self.operate() + other)
+        value = self.operate()
+        self._logger.debug("(rear) %s + %s", value, other)
+        return ConstantNode(value + other)
 
     def __rsub__(self, other):
-        return ConstantNode(other - self.operate())
+        value = self.operate()
+        self._logger.debug("(rear) %s - %s", other, value)
+        return ConstantNode(other - value)
 
     def __lt__(self, other):
         return self.operate() < other
@@ -222,7 +232,10 @@ class BinaryOperationNode(Rollable):
         self._right = right
 
     def operate(self):
-        return self.function(self.left, self.right)
+        self._logger.debug("Operating %s", self)
+        result = self.function(self.left, self.right)
+        self._logger.debug("Operation %s, result %s", self, result)
+        return result
 
     def roll(self):
         return self.operate()
