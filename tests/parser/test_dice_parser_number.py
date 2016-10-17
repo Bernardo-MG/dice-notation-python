@@ -157,6 +157,12 @@ class TestSubLong(unittest.TestCase):
     Tests that the parser can work with pure numeric operations.
     """
 
+    def setUp(self):
+        """
+        Here the tests environment would be prepared.
+        """
+        self.parser = DiceParser()
+
     def test_longSub(self):
         """
         Tests that numeric additions are done correctly.
