@@ -13,7 +13,7 @@ __author__ = 'Bernardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class TestNumericBinaryOperation(unittest.TestCase):
+class TestNode(unittest.TestCase):
     """
     Tests that the parser can work with pure numeric operations.
     """
@@ -29,7 +29,5 @@ class TestNumericBinaryOperation(unittest.TestCase):
         Tests that numeric additions are done correctly.
         """
         result = self.parser.parse("1-2-3-4-5").operate()
-
-        # TODO: Add a test to verify this operation returns the value inside a single node
 
         self.assertFalse(isinstance(result.constant, ConstantNode))

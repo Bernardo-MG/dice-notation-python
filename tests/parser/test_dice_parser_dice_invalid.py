@@ -12,7 +12,7 @@ __author__ = 'Bernardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class TestParseInvalid(unittest.TestCase):
+class TestIncompleteDice(unittest.TestCase):
     """
     Tests that simple dice expressions can be parsed into the Dice class.
     """
@@ -38,7 +38,7 @@ class TestParseInvalid(unittest.TestCase):
         result = self.parser.parse("d6")
 
         # TODO
-        #self.assertIsNone(result)
+        # self.assertIsNone(result)
 
     def test_noSides(self):
         """

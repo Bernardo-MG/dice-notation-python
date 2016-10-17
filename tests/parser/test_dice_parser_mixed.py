@@ -2,6 +2,7 @@
 
 import unittest
 
+from dice_notation.dice import Rollable
 from dice_notation.parser.dice import DiceParser
 
 """
@@ -12,7 +13,7 @@ __author__ = 'Bernardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class TestParseMixed(unittest.TestCase):
+class TestDiceAndNumber(unittest.TestCase):
     """
     Tests that simple dice expressions can be parsed into the Dice class.
     """
@@ -29,7 +30,7 @@ class TestParseMixed(unittest.TestCase):
         """
         result = self.parser.parse("10+1d6")
 
-        result.roll()
+        self.assertTrue(isinstance(result, Rollable))
 
     def test_mixed_subDice(self):
         """
@@ -37,7 +38,7 @@ class TestParseMixed(unittest.TestCase):
         """
         result = self.parser.parse("10-1d6")
 
-        result.roll()
+        self.assertTrue(isinstance(result, Rollable))
 
     def test_mixed_addNumber(self):
         """
@@ -45,7 +46,7 @@ class TestParseMixed(unittest.TestCase):
         """
         result = self.parser.parse("1d6+10")
 
-        result.roll()
+        self.assertTrue(isinstance(result, Rollable))
 
     def test_mixed_subNumber(self):
         """
@@ -53,4 +54,4 @@ class TestParseMixed(unittest.TestCase):
         """
         result = self.parser.parse("1d6-10")
 
-        result.roll()
+        self.assertTrue(isinstance(result, Rollable))
