@@ -86,6 +86,16 @@ class TestRoll(unittest.TestCase):
         self.assertTrue(roll >= dice.quantity)
         self.assertTrue(roll <= (dice.quantity * dice.sides))
 
+    def test_singleDie_multipleRoll(self):
+        """
+        Tests that the result of rolling a die is kept in the expected range.
+        """
+        dice = RollableDice(1, 6)
+
+        self.assertIsNotNone(dice.roll())
+        self.assertIsNotNone(dice.roll())
+        self.assertIsNotNone(dice.roll())
+
 
 
 class TestRollInvalid(unittest.TestCase):
