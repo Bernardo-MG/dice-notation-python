@@ -2,6 +2,8 @@
 
 import unittest
 
+import sys
+
 from dice_notation.dice import Rollable
 from dice_notation.parser.dice import DiceParser
 
@@ -77,6 +79,15 @@ class TestSimpleDice(unittest.TestCase):
 
         self.assertEqual(0, dice.quantity)
         self.assertEqual(0, dice.sides)
+
+    def test_max(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        dice = self.parser.parse(str(sys.maxint)+"d"+str(sys.maxint))
+
+        self.assertEqual(sys.maxint, dice.quantity)
+        self.assertEqual(sys.maxint, dice.sides)
 
 
 class TestDiceBinaryOperation(unittest.TestCase):
