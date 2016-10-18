@@ -20,3 +20,4 @@ Features
    usage
    reports
    code/dice
+   code/index
