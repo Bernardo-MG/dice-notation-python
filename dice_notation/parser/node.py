@@ -2,7 +2,7 @@
 
 import logging
 
-from dice_notation.dice import Dice, RollableDice, Rollable
+from dice_notation.dice import RollableDice, Rollable
 
 
 class ConstantNode(Rollable):
