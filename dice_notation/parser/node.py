@@ -76,47 +76,6 @@ class ConstantNode(Rollable):
         return self.constant
 
 
-class RollableNode(Rollable):
-    def __init__(self, rollable):
-        super(RollableNode, self).__init__()
-        self._rollable = rollable
-
-    def __add__(self, other):
-        return ConstantNode(other + self.roll())
-
-    def __sub__(self, other):
-        return ConstantNode(self.roll() - other)
-
-    def __radd__(self, other):
-        return ConstantNode(self.roll() + other)
-
-    def __rsub__(self, other):
-        return ConstantNode(other - self.roll())
-
-    def __str__(self):
-        return '%s' % (self._rollable)
-
-    def __repr__(self):
-        return '<class %s>(rollable=%r)' % \
-               (self.__class__.__name__, self._rollable)
-
-    @property
-    def rollable(self):
-        """
-        The rollable value stored in the node.
-
-        :return: the number of dice
-        """
-        return self._rollable
-
-    @rollable.setter
-    def rollable(self, rollable):
-        self._rollable = rollable
-
-    def roll(self):
-        return self.rollable.roll()
-
-
 class DiceNode(RollableDice):
     def __init__(self, quantity, sides):
         super(DiceNode, self).__init__(quantity=quantity, sides=sides)
