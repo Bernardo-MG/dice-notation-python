@@ -84,10 +84,10 @@ class TestSimpleDice(unittest.TestCase):
         """
         Tests that a simple dice notation can be parsed.
         """
-        dice = self.parser.parse(str(sys.maxint)+"d"+str(sys.maxint))
+        dice = self.parser.parse(str(sys.maxsize)+"d"+str(sys.maxsize))
 
-        self.assertEqual(sys.maxint, dice.quantity)
-        self.assertEqual(sys.maxint, dice.sides)
+        self.assertEqual(sys.maxsize, dice.quantity)
+        self.assertEqual(sys.maxsize, dice.sides)
 
 
 class TestDiceBinaryOperation(unittest.TestCase):
