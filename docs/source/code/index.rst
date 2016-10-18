@@ -1,0 +1,7 @@
+=========
+Code docs
+=========
+
+.. toctree::
+
+   dice

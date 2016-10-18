@@ -19,3 +19,4 @@ Features
    acquire
    usage
    reports
+   code/dice
