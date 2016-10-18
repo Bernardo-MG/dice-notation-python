@@ -82,10 +82,10 @@ class RollableNode(Rollable):
         self._rollable = rollable
 
     def __add__(self, other):
-        return ConstantNode(self.roll() + other)
+        return ConstantNode(other + self.roll())
 
     def __sub__(self, other):
-        return ConstantNode(other - self.roll())
+        return ConstantNode(self.roll() - other)
 
     def __radd__(self, other):
         return ConstantNode(self.roll() + other)
@@ -117,9 +117,21 @@ class RollableNode(Rollable):
         return self.rollable.roll()
 
 
-class DiceNode(RollableNode, Dice):
+class DiceNode(RollableDice):
     def __init__(self, quantity, sides):
-        super(DiceNode, self).__init__(RollableDice(quantity, sides))
+        super(DiceNode, self).__init__(quantity=quantity, sides=sides)
+
+    def __add__(self, other):
+        return ConstantNode(other + self.roll())
+
+    def __sub__(self, other):
+        return ConstantNode(self.roll() - other)
+
+    def __radd__(self, other):
+        return ConstantNode(self.roll() + other)
+
+    def __rsub__(self, other):
+        return ConstantNode(other - self.roll())
 
     def __str__(self):
         return '%sd%s' % (self.quantity, self.sides)
@@ -127,22 +139,6 @@ class DiceNode(RollableNode, Dice):
     def __repr__(self):
         return '<class %s>(quantity=%r, sides=%r)' % \
                (self.__class__.__name__, self.quantity, self.sides)
-
-    @property
-    def quantity(self):
-        return self.rollable.quantity
-
-    @quantity.setter
-    def quantity(self, quantity):
-        self.rollable.quantity(quantity)
-
-    @property
-    def sides(self):
-        return self.rollable.sides
-
-    @sides.setter
-    def sides(self, sides):
-        self.rollable.sides(sides)
 
 
 class BinaryOperationNode(Rollable):

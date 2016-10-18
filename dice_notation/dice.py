@@ -53,7 +53,7 @@ class Rollable(object):
         raise NotImplementedError('The roll method must be implemented')
 
 
-class Dice(Rollable):
+class Dice(object):
     """
     A group of dice, all with the same number of sides. Such a group is just
     composed of a quantity of dice, and their number of sides.
