@@ -205,7 +205,8 @@ class BinaryOperationNode(Rollable):
 
     def __repr__(self):
         return '<class %s>(function=%r, left=%r, right=%r)' % \
-               (self.__class__.__name__, self._function, self._left, self._right)
+               (self.__class__.__name__, self._function, self._left,
+                self._right)
 
     @property
     def function(self):
