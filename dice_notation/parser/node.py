@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+
 from dice_notation.dice import Dice, RollableDice, Rollable
 
 

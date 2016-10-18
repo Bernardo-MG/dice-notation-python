@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import logging
-
 from operator import add, sub
 
 from dice_notation.parser.common import PlyParser
 from dice_notation.parser.node import BinaryOperationNode, ConstantNode, \
-                                        DiceNode
+    DiceNode
 
 
 class DiceParser(PlyParser):
-
     tokens = (
         'DIGIT', 'DSEPARATOR', 'ADD', 'SUB'
     )

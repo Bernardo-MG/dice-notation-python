@@ -123,7 +123,7 @@ class RollableDice(Dice, Rollable):
     """
 
     def __init__(self, quantity, sides):
-        super(RollableDice, self).__init__(quantity,sides)
+        super(RollableDice, self).__init__(quantity, sides)
 
     def roll(self):
         result = 0
