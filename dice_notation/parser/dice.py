@@ -30,13 +30,13 @@ class DiceParser(PlyParser):
         try:
             t.value = int(t.value)
         except ValueError:
-            print("Integer value too large %s" % t.value)
+            self._logger.error("Integer value too large %s" % t.value)
             t.value = 0
         # print "parsed number %s" % repr(t.value)
         return t
 
     def t_error(self, t):
-        print("Illegal character '%s'" % t.value[0])
+        self._logger.error("Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
 
     # Parsing rules
@@ -77,6 +77,6 @@ class DiceParser(PlyParser):
 
     def p_error(self, p):
         if p:
-            print("Syntax error at '%s'" % p.value)
+            self._logger.error("Syntax error at '%s'" % p.value)
         else:
-            print("Syntax error at EOF")
+            self._logger.error("Syntax error at EOF")
