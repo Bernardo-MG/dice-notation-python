@@ -24,6 +24,10 @@ matrix:
     # Tests and deploys docs, also runs coverage report
     - python: "3.5"
       env: COVERAGE=true TEST_DOCS=true DEPLOY_DOCS=true
+addons:
+  apt:
+    packages:
+    - sshpass
 
 before_install:
   # Gets scripts
