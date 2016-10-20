@@ -56,6 +56,6 @@ script:
 after_success:
   # Documentation deployment
   - ~/.scripts/sphinx/build-html.sh $DO_DEPLOY_DOCS docs
-  - cd docs/build/html
+  - cd ~/sphinx/build/html
   - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_RELEASE $DEPLOY_USERNAME $DEPLOY_PASSWORD $DEPLOY_HOST $DEPLOY_PORT $DEPLOY_PATH_RELEASE
   - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_DEVELOP $DEPLOY_USERNAME $DEPLOY_PASSWORD $DEPLOY_HOST $DEPLOY_PORT $DEPLOY_PATH_DEVELOP
