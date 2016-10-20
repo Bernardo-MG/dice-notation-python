@@ -27,7 +27,7 @@ matrix:
 
 before_install:
   # Gets scripts
-  - git clone -b v0.3.1 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  - git clone -b v0.4.0 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
@@ -52,4 +52,6 @@ script:
 after_success:
   # Documentation deployment
   - ~/.scripts/sphinx/build-html.sh $DO_DEPLOY_DOCS docs
-  - ~/.scripts/rtd/deploy.sh $DO_DEPLOY_DOCS dice-notation
+  - cd docs/build/html
+  - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_RELEASE $DEPLOY_USERNAME $DEPLOY_PASSWORD $DEPLOY_HOST $DEPLOY_PORT $DEPLOY_PATH_RELEASE
+  - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_DEVELOP $DEPLOY_USERNAME $DEPLOY_PASSWORD $DEPLOY_HOST $DEPLOY_PORT $DEPLOY_PATH_DEVELOP
