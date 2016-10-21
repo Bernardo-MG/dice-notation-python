@@ -5,6 +5,6 @@ Code docs
 .. toctree::
 
    dice
-   node
+   parser_node
    parser_common
    parser_dice
