@@ -7,8 +7,18 @@ from dice_notation.parser.common import PlyParser
 from dice_notation.parser.node import BinaryOperationNode, ConstantNode, \
     DiceNode
 
+"""
+Dice notation parsers.
+"""
+
 
 class DiceParser(PlyParser):
+    """
+    Dice notation parser.
+
+    It handles the most common version of the dice notation.
+    """
+
     tokens = (
         'DIGIT', 'DSEPARATOR', 'ADD', 'SUB'
     )

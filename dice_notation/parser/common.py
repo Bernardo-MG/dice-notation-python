@@ -6,11 +6,22 @@ from abc import ABCMeta, abstractmethod
 import ply.lex as lex
 import ply.yacc as yacc
 
+"""
+Base classes for parsers.
+
+It contains some interfaces, along a base parser for the parsing library being
+used.
+"""
+
 
 class Parser(object):
     """
     Interface for implementing parsers.
+
+    It just contains a single method, 'parse', which will receive a value
+    and take care of parsing it into another.
     """
+
     __metaclass__ = ABCMeta
 
     def __init__(self):
@@ -23,8 +34,11 @@ class Parser(object):
 
 class PlyParser(Parser):
     """
-    Base class for a lexer/parser that has the rules defined as methods
+    Base class for a lexer/parser that has the rules defined as methods.
+
+    It makes use of Ply for the parsing.
     """
+
     tokens = ()
     precedence = ()
 
@@ -41,7 +55,7 @@ class PlyParser(Parser):
         self.tabmodule = modname + "_" + "parsetab"
         # print self.debugfile, self.tabmodule
 
-        # Build the lexer and parser
+        # Builds the lexer and parser
         lex.lex(module=self, debug=self.debug)
         yacc.yacc(module=self,
                   debug=self.debug,
