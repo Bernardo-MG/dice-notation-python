@@ -4,8 +4,26 @@ import logging
 
 from dice_notation.dice import RollableDice, Rollable
 
+"""
+Dice notation nodes.
+
+Used to generate the parsed tree from a dice notation expression.
+
+All the nodes are rollable, to allow generating a roll from any point of the
+expression.
+"""
+
 
 class ConstantNode(Rollable):
+    """
+    Node containing a constant value.
+
+    It just wraps any value, allowing it to interface with the other nodes.
+
+    The value contained in the node is called a constant, but actually it can
+    be a mutable type. No validation is applied to the stored object.
+    """
+
     def __init__(self, constant):
         super(ConstantNode, self).__init__()
         self._constant = constant
@@ -66,6 +84,13 @@ class ConstantNode(Rollable):
 
     @property
     def constant(self):
+        """
+        The stored constant value.
+
+        This can be any type of object.
+        :return: the stored value
+        """
+
         return self._constant
 
     @constant.setter
@@ -77,6 +102,10 @@ class ConstantNode(Rollable):
 
 
 class DiceNode(RollableDice):
+    """
+    Node containing a dice.
+    """
+
     def __init__(self, quantity, sides):
         super(DiceNode, self).__init__(quantity=quantity, sides=sides)
 
@@ -101,6 +130,12 @@ class DiceNode(RollableDice):
 
 
 class BinaryOperationNode(Rollable):
+    """
+    Node for a binary operation.
+
+    Acquiring its value will execute a function with two parameters.
+    """
+
     def __init__(self, function, left, right):
         super(BinaryOperationNode, self).__init__()
         self._logger = logging.getLogger(self.__class__.__name__)
@@ -166,6 +201,11 @@ class BinaryOperationNode(Rollable):
 
     @property
     def function(self):
+        """
+        Returns the function used for the binary operation.
+        :return: function used
+        """
+
         return self._function
 
     @function.setter
@@ -174,6 +214,11 @@ class BinaryOperationNode(Rollable):
 
     @property
     def left(self):
+        """
+        Returns the left sided operand.
+        :return:  the left sided operand
+        """
+
         return self._left
 
     @left.setter
@@ -182,6 +227,11 @@ class BinaryOperationNode(Rollable):
 
     @property
     def right(self):
+        """
+        Returns the right sided operand.
+        :return:  the right sided operand
+        """
+
         return self._right
 
     @right.setter
@@ -189,6 +239,11 @@ class BinaryOperationNode(Rollable):
         self._right = right
 
     def operate(self):
+        """
+        Executes the function using the stored operands.
+        :return: the result from executing the function
+        """
+
         self._logger.debug("Operating %s", self)
         result = self.function(self.left, self.right)
         self._logger.debug("Operation %s, result %s", self, result)
