@@ -43,7 +43,7 @@ documentation sites:
 - The `development docs`_ are generated from the latest code in the 'develop' branch
 
 You can also create the documentation from the source files, kept in the 'docs'
-folder, with the help of Sphinx. For this use the makefile, or the make.bat
+folder, with the help of `Sphinx`_. For this use the makefile, or the make.bat
 file, contained on that folder.
 
 Prerequisites
@@ -110,8 +110,8 @@ License
 The project has been released under the `MIT License`_.
 
 .. _GitHub project page: https://github.com/Bernardo-MG/dice-notation
-.. _latest docs: http://dice-notation.readthedocs.org/en/latest/
-.. _development docs: http://dice-notation.readthedocs.org/en/develop/
+.. _latest docs: http://docs.wandrell.com/dice-notation-python/
+.. _development docs: http://docs.wandrell.com/development/dice-notation-python/
 .. _Pypi package: https://pypi.python.org/pypi/dice-notation
 .. _MIT License: http://www.opensource.org/licenses/mit-license.php
 .. _project issues tracker: https://github.com/Bernardo-MG/dice-notation/issues
