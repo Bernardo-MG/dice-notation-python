@@ -18,12 +18,12 @@ operating with it on any Python application.
     :target: https://pypi.python.org/pypi/dice-notation
     :alt: Dice Notation Tools for Python Pypi package page
 
-.. image:: https://readthedocs.org/projects/dice-notation/badge/?version=latest
-    :target: http://dice-notation.readthedocs.org/en/latest/
-    :alt: Dice Notation Tools for Python latest documentation Status
-.. image:: https://readthedocs.org/projects/dice-notation/badge/?version=develop
-    :target: http://dice-notation.readthedocs.org/en/develop/
-    :alt: Dice Notation Tools for Python development documentation Status
+.. image:: https://img.shields.io/badge/docs-release-blue.svg
+    :target: http://docs.wandrell.com/dice-notation-python
+    :alt: Dice Notation Tools for Python latest documentation
+.. image:: https://img.shields.io/badge/docs-develop-blue.svg
+    :target: http://docs.wandrell.com/development/dice-notation-python/
+    :alt: Dice Notation Tools for Python development documentation
 
 Features
 --------
