@@ -109,10 +109,10 @@ License
 
 The project has been released under the `MIT License`_.
 
-.. _GitHub project page: https://github.com/Bernardo-MG/dice-notation
+.. _GitHub project page: https://github.com/Bernardo-MG/dice-notation-python
 .. _latest docs: http://docs.wandrell.com/dice-notation-python/
 .. _development docs: http://docs.wandrell.com/development/dice-notation-python/
 .. _Pypi package: https://pypi.python.org/pypi/dice-notation
 .. _MIT License: http://www.opensource.org/licenses/mit-license.php
-.. _project issues tracker: https://github.com/Bernardo-MG/dice-notation/issues
+.. _project issues tracker: https://github.com/Bernardo-MG/dice-notation-python/issues
 .. _Sphinx: http://sphinx-doc.org/
