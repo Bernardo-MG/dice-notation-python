@@ -1,6 +1,6 @@
-==============
-Notation model
-==============
+===============
+Notation module
+===============
 
 .. automodule:: dice_notation.parser.notation
     :members:

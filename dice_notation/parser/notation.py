@@ -15,7 +15,7 @@ expression.
 """
 
 
-class ConstantExpression(Rollable):
+class ConstantOperand(Rollable):
     """
     Expression for a constant value.
 
@@ -26,30 +26,30 @@ class ConstantExpression(Rollable):
     """
 
     def __init__(self, constant):
-        super(ConstantExpression, self).__init__()
+        super(ConstantOperand, self).__init__()
         self._constant = constant
         # If it received a constant node this is unwrapped
         # TODO: Maybe this problem should be fixed somewhere else
-        while isinstance(self._constant, ConstantExpression):
+        while isinstance(self._constant, ConstantOperand):
             self._constant = constant.constant
 
     def __add__(self, other):
-        return ConstantExpression(other + self.constant)
+        return ConstantOperand(other + self.constant)
 
     def __sub__(self, other):
-        return ConstantExpression(self.constant - other)
+        return ConstantOperand(self.constant - other)
 
     def __radd__(self, other):
-        return ConstantExpression(self.constant + other)
+        return ConstantOperand(self.constant + other)
 
     def __rsub__(self, other):
-        return ConstantExpression(other - self.constant)
+        return ConstantOperand(other - self.constant)
 
     def __lt__(self, other):
         return self.constant < other
 
     def __le__(self, other):
-        if isinstance(other, ConstantExpression):
+        if isinstance(other, ConstantOperand):
             return self.constant <= other.constant
         elif isinstance(other, (int, float)):
             return self.constant <= other
@@ -66,7 +66,7 @@ class ConstantExpression(Rollable):
         return self.constant > other
 
     def __ge__(self, other):
-        if isinstance(other, ConstantExpression):
+        if isinstance(other, ConstantOperand):
             return self.constant >= other.constant
         elif isinstance(other, (int, float)):
             return self.constant >= other
@@ -102,7 +102,7 @@ class ConstantExpression(Rollable):
         return self.constant
 
 
-class DiceExpression(RollableDice):
+class DiceOperand(RollableDice):
     """
     Expression for a dice.
 
@@ -110,19 +110,19 @@ class DiceExpression(RollableDice):
     """
 
     def __init__(self, quantity, sides):
-        super(DiceExpression, self).__init__(quantity=quantity, sides=sides)
+        super(DiceOperand, self).__init__(quantity=quantity, sides=sides)
 
     def __add__(self, other):
-        return ConstantExpression(other + self.roll())
+        return ConstantOperand(other + self.roll())
 
     def __sub__(self, other):
-        return ConstantExpression(self.roll() - other)
+        return ConstantOperand(self.roll() - other)
 
     def __radd__(self, other):
-        return ConstantExpression(self.roll() + other)
+        return ConstantOperand(self.roll() + other)
 
     def __rsub__(self, other):
-        return ConstantExpression(other - self.roll())
+        return ConstantOperand(other - self.roll())
 
     def __str__(self):
         return '%sd%s' % (self.quantity, self.sides)
@@ -132,7 +132,7 @@ class DiceExpression(RollableDice):
                (self.__class__.__name__, self.quantity, self.sides)
 
 
-class BinaryOperationExpression(Rollable):
+class BinaryOperation(Rollable):
     """
     Exprssion for a binary operation.
 
@@ -140,7 +140,7 @@ class BinaryOperationExpression(Rollable):
     """
 
     def __init__(self, function, left, right):
-        super(BinaryOperationExpression, self).__init__()
+        super(BinaryOperation, self).__init__()
         self._logger = logging.getLogger(self.__class__.__name__)
         self._function = function
         self._left = left
@@ -149,28 +149,28 @@ class BinaryOperationExpression(Rollable):
     def __add__(self, other):
         value = self.operate()
         self._logger.debug("%s + %s", value, other)
-        return ConstantExpression(other + value)
+        return ConstantOperand(other + value)
 
     def __sub__(self, other):
         value = self.operate()
         self._logger.debug("%s - %s", other, value)
-        return ConstantExpression(value - other)
+        return ConstantOperand(value - other)
 
     def __radd__(self, other):
         value = self.operate()
         self._logger.debug("(rear) %s + %s", value, other)
-        return ConstantExpression(value + other)
+        return ConstantOperand(value + other)
 
     def __rsub__(self, other):
         value = self.operate()
         self._logger.debug("(rear) %s - %s", other, value)
-        return ConstantExpression(other - value)
+        return ConstantOperand(other - value)
 
     def __lt__(self, other):
         return self.operate() < other
 
     def __le__(self, other):
-        if isinstance(other, ConstantExpression):
+        if isinstance(other, ConstantOperand):
             return self.operate() <= other.constant
         elif isinstance(other, (int, float)):
             return self.operate() <= other
@@ -187,7 +187,7 @@ class BinaryOperationExpression(Rollable):
         return self.operate() > other
 
     def __ge__(self, other):
-        if isinstance(other, ConstantExpression):
+        if isinstance(other, ConstantOperand):
             return self.operate() >= other.constant
         elif isinstance(other, (int, float)):
             return self.operate() >= other

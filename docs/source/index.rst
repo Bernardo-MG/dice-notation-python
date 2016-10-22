@@ -26,3 +26,4 @@ Features
    code/index
    docs/dice
    docs/grammar
+   docs/notation

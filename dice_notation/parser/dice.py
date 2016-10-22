@@ -4,8 +4,8 @@ import logging
 from operator import add, sub
 
 from dice_notation.parser.common import PlyParser
-from dice_notation.parser.notation import BinaryOperationExpression, ConstantExpression, \
-    DiceExpression
+from dice_notation.parser.notation import BinaryOperation, ConstantOperand, \
+    DiceOperand
 
 """
 Dice notation parsers.
@@ -60,7 +60,7 @@ class DiceParser(PlyParser):
 
     def p_expression_dice(self, p):
         'expression : DIGIT DSEPARATOR DIGIT'
-        p[0] = DiceExpression(p[1], p[3])
+        p[0] = DiceOperand(p[1], p[3])
         self._logger.debug("Dice %s", p[0])
 
     def p_expression_binop(self, p):
@@ -70,17 +70,17 @@ class DiceParser(PlyParser):
         """
         # print [repr(p[i]) for i in range(0,4)]
         if p[2] == '+':
-            p[0] = BinaryOperationExpression(add, p[1], p[3])
+            p[0] = BinaryOperation(add, p[1], p[3])
         elif p[2] == '-':
-            p[0] = BinaryOperationExpression(sub, p[1], p[3])
+            p[0] = BinaryOperation(sub, p[1], p[3])
         self._logger.debug("Binary operation %s", p[0])
 
     def p_expression_digit(self, p):
         'expression : DIGIT'
-        if isinstance(p[1], ConstantExpression):
+        if isinstance(p[1], ConstantOperand):
             p[0] = p[1]
         else:
-            p[0] = ConstantExpression(p[1])
+            p[0] = ConstantOperand(p[1])
         self._logger.debug("Constant %s", p[0])
 
     def p_error(self, p):
