@@ -82,17 +82,17 @@ Usage
 The application has been coded in Python, and does not require any particular
 framework.
 
-To use it just import the parser:
+To use it just import the parser::
 
     from dice_notation.parser import DiceParser
 
-And then use it to parse a dice notation expression:
+And then use it to parse a dice notation expression::
 
     parser = DiceParser()
     dice = parser.parse('1d6+2')
 
 The result can be accessed just by calling the 'roll' method as many times as
-needed, which will generate a new random value each time it is called.
+needed, which will generate a new random value each time it is called::
 
     print(dice.roll())
     print(dice.roll())
