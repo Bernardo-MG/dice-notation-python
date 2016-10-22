@@ -3,7 +3,7 @@
 import unittest
 
 from dice_notation.dice import Rollable
-from dice_notation.parser.dice import DiceParser
+from dice_notation.parser import DiceParser
 
 """
 Dice parser tests for expressions only containing dice.
