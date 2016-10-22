@@ -110,7 +110,7 @@ class TestRollInvalid(unittest.TestCase):
         """
         dice = RollableDice(-1, 1)
 
-        self.assertEqual(0, dice.roll())
+        self.assertIsNone(dice.roll())
 
     def test_negativeSides(self):
         """
@@ -118,7 +118,7 @@ class TestRollInvalid(unittest.TestCase):
         """
         dice = RollableDice(1, -1)
 
-        self.assertEqual(0, dice.roll())
+        self.assertIsNone(dice.roll())
 
     def test_noneQuantity(self):
         """
@@ -126,7 +126,7 @@ class TestRollInvalid(unittest.TestCase):
         """
         dice = RollableDice(None, 1)
 
-        self.assertEqual(0, dice.roll())
+        self.assertIsNone(dice.roll())
 
     def test_noneSides(self):
         """
@@ -134,4 +134,4 @@ class TestRollInvalid(unittest.TestCase):
         """
         dice = RollableDice(1, None)
 
-        self.assertEqual(0, dice.roll())
+        self.assertIsNone(dice.roll())

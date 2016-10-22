@@ -127,8 +127,12 @@ class RollableDice(Dice, Rollable):
     def roll(self):
         result = 0
 
-        if self.quantity and self.sides and self.sides > 0:
+        if self.quantity == 0 or self.sides == 0:
+            result = 0
+        elif self.quantity > 0 and self.sides > 0:
             for x in xrange(self.quantity):
                 result += randint(1, self.sides)
+        else:
+            result = None
 
         return result
