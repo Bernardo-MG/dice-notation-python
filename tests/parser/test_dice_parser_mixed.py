@@ -68,11 +68,34 @@ class TestMultipleRoll(unittest.TestCase):
         """
         self.parser = DiceParser()
 
-    def test_mixed_addNumber_multipleRoll(self):
+    def test_mixed_addDice_rollable(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        result = self.parser.parse("10+1d6")
+
+        self.assertTrue(isinstance(result, Rollable))
+
+    def test_mixed_subDice_rollable(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        result = self.parser.parse("10-1d6")
+
+        self.assertTrue(isinstance(result, Rollable))
+
+    def test_mixed_addNumber_rollable(self):
         """
         Tests that a simple dice notation can be parsed.
         """
         result = self.parser.parse("1d6+10")
 
-        self.assertIsNotNone(result.roll())
-        self.assertIsNotNone(result.roll())
+        self.assertTrue(isinstance(result, Rollable))
+
+    def test_mixed_subNumber_rollable(self):
+        """
+        Tests that a simple dice notation can be parsed.
+        """
+        result = self.parser.parse("1d6-10")
+
+        self.assertTrue(isinstance(result, Rollable))
