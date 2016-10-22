@@ -5,18 +5,19 @@ import logging
 from dice_notation.dice import RollableDice, Rollable
 
 """
-Dice notation nodes.
+Dice notation classes.
 
-Used to generate the parsed tree from a dice notation expression.
+Used to generate the parsed tree from a dice notation expression. These
+expressions will be nodes in that tree.
 
-All the nodes are rollable, to allow generating a roll from any point of the
+All the classes are rollable, to allow generating a roll from any point of the
 expression.
 """
 
 
-class ConstantNode(Rollable):
+class ConstantExpression(Rollable):
     """
-    Node containing a constant value.
+    Expression for a constant value.
 
     It just wraps any value, allowing it to interface with the other nodes.
 
@@ -25,30 +26,30 @@ class ConstantNode(Rollable):
     """
 
     def __init__(self, constant):
-        super(ConstantNode, self).__init__()
+        super(ConstantExpression, self).__init__()
         self._constant = constant
         # If it received a constant node this is unwrapped
-        # TODO: Maybe the problem should be fixed somewhere else
-        while isinstance(self._constant, ConstantNode):
+        # TODO: Maybe this problem should be fixed somewhere else
+        while isinstance(self._constant, ConstantExpression):
             self._constant = constant.constant
 
     def __add__(self, other):
-        return ConstantNode(other + self.constant)
+        return ConstantExpression(other + self.constant)
 
     def __sub__(self, other):
-        return ConstantNode(self.constant - other)
+        return ConstantExpression(self.constant - other)
 
     def __radd__(self, other):
-        return ConstantNode(self.constant + other)
+        return ConstantExpression(self.constant + other)
 
     def __rsub__(self, other):
-        return ConstantNode(other - self.constant)
+        return ConstantExpression(other - self.constant)
 
     def __lt__(self, other):
         return self.constant < other
 
     def __le__(self, other):
-        if isinstance(other, ConstantNode):
+        if isinstance(other, ConstantExpression):
             return self.constant <= other.constant
         elif isinstance(other, (int, float)):
             return self.constant <= other
@@ -65,7 +66,7 @@ class ConstantNode(Rollable):
         return self.constant > other
 
     def __ge__(self, other):
-        if isinstance(other, ConstantNode):
+        if isinstance(other, ConstantExpression):
             return self.constant >= other.constant
         elif isinstance(other, (int, float)):
             return self.constant >= other
@@ -101,25 +102,27 @@ class ConstantNode(Rollable):
         return self.constant
 
 
-class DiceNode(RollableDice):
+class DiceExpression(RollableDice):
     """
-    Node containing a dice.
+    Expression for a dice.
+
+    It is mostly just its parent class, only adding comparison methods.
     """
 
     def __init__(self, quantity, sides):
-        super(DiceNode, self).__init__(quantity=quantity, sides=sides)
+        super(DiceExpression, self).__init__(quantity=quantity, sides=sides)
 
     def __add__(self, other):
-        return ConstantNode(other + self.roll())
+        return ConstantExpression(other + self.roll())
 
     def __sub__(self, other):
-        return ConstantNode(self.roll() - other)
+        return ConstantExpression(self.roll() - other)
 
     def __radd__(self, other):
-        return ConstantNode(self.roll() + other)
+        return ConstantExpression(self.roll() + other)
 
     def __rsub__(self, other):
-        return ConstantNode(other - self.roll())
+        return ConstantExpression(other - self.roll())
 
     def __str__(self):
         return '%sd%s' % (self.quantity, self.sides)
@@ -129,15 +132,15 @@ class DiceNode(RollableDice):
                (self.__class__.__name__, self.quantity, self.sides)
 
 
-class BinaryOperationNode(Rollable):
+class BinaryOperationExpression(Rollable):
     """
-    Node for a binary operation.
+    Exprssion for a binary operation.
 
     Acquiring its value will execute a function with two parameters.
     """
 
     def __init__(self, function, left, right):
-        super(BinaryOperationNode, self).__init__()
+        super(BinaryOperationExpression, self).__init__()
         self._logger = logging.getLogger(self.__class__.__name__)
         self._function = function
         self._left = left
@@ -146,28 +149,28 @@ class BinaryOperationNode(Rollable):
     def __add__(self, other):
         value = self.operate()
         self._logger.debug("%s + %s", value, other)
-        return ConstantNode(other + value)
+        return ConstantExpression(other + value)
 
     def __sub__(self, other):
         value = self.operate()
         self._logger.debug("%s - %s", other, value)
-        return ConstantNode(value - other)
+        return ConstantExpression(value - other)
 
     def __radd__(self, other):
         value = self.operate()
         self._logger.debug("(rear) %s + %s", value, other)
-        return ConstantNode(value + other)
+        return ConstantExpression(value + other)
 
     def __rsub__(self, other):
         value = self.operate()
         self._logger.debug("(rear) %s - %s", other, value)
-        return ConstantNode(other - value)
+        return ConstantExpression(other - value)
 
     def __lt__(self, other):
         return self.operate() < other
 
     def __le__(self, other):
-        if isinstance(other, ConstantNode):
+        if isinstance(other, ConstantExpression):
             return self.operate() <= other.constant
         elif isinstance(other, (int, float)):
             return self.operate() <= other
@@ -184,7 +187,7 @@ class BinaryOperationNode(Rollable):
         return self.operate() > other
 
     def __ge__(self, other):
-        if isinstance(other, ConstantNode):
+        if isinstance(other, ConstantExpression):
             return self.operate() >= other.constant
         elif isinstance(other, (int, float)):
             return self.operate() >= other

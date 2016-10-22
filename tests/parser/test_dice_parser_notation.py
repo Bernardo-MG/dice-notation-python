@@ -3,7 +3,7 @@
 import unittest
 
 from dice_notation.parser.dice import DiceParser
-from dice_notation.parser.node import ConstantNode
+from dice_notation.parser.notation import ConstantExpression
 
 """
 Dice parser tests for purely numeric expressions.
@@ -30,4 +30,4 @@ class TestNode(unittest.TestCase):
         """
         result = self.parser.parse("1-2-3-4-5").operate()
 
-        self.assertFalse(isinstance(result.constant, ConstantNode))
+        self.assertFalse(isinstance(result.constant, ConstantExpression))
