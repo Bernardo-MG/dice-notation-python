@@ -25,3 +25,4 @@ Features
    reports
    code/index
    docs/dice
+   docs/grammar
