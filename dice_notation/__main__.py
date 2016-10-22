@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
 
-if __name__ == "__main__":
-    print('Hello world!')
+from dice_notation.parser import DiceParser
+
+if __name__ == '__main__':
+    parser = DiceParser()
