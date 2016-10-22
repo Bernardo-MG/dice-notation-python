@@ -134,7 +134,7 @@ class DiceOperand(RollableDice):
 
 class BinaryOperation(Rollable):
     """
-    Exprssion for a binary operation.
+    Expression for a binary operation.
 
     Acquiring its value will execute a function with two parameters.
     """
