@@ -2,6 +2,17 @@
 Usage
 =====
 
-Describe here how to use the library with some general use examples.
+To use the parser just import it:
 
-Any detailed topic should go into it's own section.
+    >>> from dice_notation.parser import DiceParser
+
+And then parse a dice notation expression:
+
+    >>> parser = DiceParser()
+    >>> dice = parser.parse('1d6+2')
+
+The result can be accessed just by calling the 'roll' method as many times as
+needed, which will generate a new random value each time it is called.
+
+    >>> print(dice.roll())
+    >>> print(dice.roll())
