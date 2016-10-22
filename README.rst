@@ -28,10 +28,9 @@ operating with it on any Python application.
 Features
 --------
 
-The library contains the following features:
-
-- API for dice and dice notation, along classes to generate values from them
-- Parser to create API instances from the notation
+- Ply-based parser to generate objects for dice notation
+- Easy-to-use objects to handle the notation, just call the 'roll' method
+- Classes to support plain dice
 
 Documentation
 -------------
@@ -80,14 +79,14 @@ the following command:
 Usage
 -----
 
-The application has been coded in Python, without using any particular
+The application has been coded in Python, and does not require any particular
 framework.
 
 To use it just import the parser:
 
     >>> from dice_notation.parser import DiceParser
 
-And then use it to parser a dice notation expression:
+And then use it to parse a dice notation expression:
 
     >>> parser = DiceParser()
     >>> dice = parser.parse('1d6+2')
