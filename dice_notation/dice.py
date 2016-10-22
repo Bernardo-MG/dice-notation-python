@@ -129,7 +129,7 @@ class RollableDice(Dice, Rollable):
 
         if self.quantity == 0 or self.sides == 0:
             result = 0
-        elif self.quantity > 0 and self.sides > 0:
+        elif self.quantity and self.quantity > 0 and self.sides and self.sides > 0:
             for x in xrange(self.quantity):
                 result += randint(1, self.sides)
         else:
