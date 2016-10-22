@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import unittest
-
 import sys
+import unittest
 
 from dice_notation.dice import Rollable
 from dice_notation.parser import DiceParser
@@ -84,7 +83,7 @@ class TestSimpleDice(unittest.TestCase):
         """
         Tests that a simple dice notation can be parsed.
         """
-        dice = self.parser.parse(str(sys.maxsize)+"d"+str(sys.maxsize))
+        dice = self.parser.parse(str(sys.maxsize) + "d" + str(sys.maxsize))
 
         self.assertEqual(sys.maxsize, dice.quantity)
         self.assertEqual(sys.maxsize, dice.sides)

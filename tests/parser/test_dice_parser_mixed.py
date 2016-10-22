@@ -56,6 +56,7 @@ class TestDiceAndNumber(unittest.TestCase):
 
         self.assertTrue(isinstance(result, Rollable))
 
+
 class TestMultipleRoll(unittest.TestCase):
     """
     Tests that simple dice expressions can be parsed into the Dice class.

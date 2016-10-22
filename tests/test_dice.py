@@ -97,11 +97,11 @@ class TestRoll(unittest.TestCase):
         self.assertIsNotNone(dice.roll())
 
 
-
 class TestRollInvalid(unittest.TestCase):
     """
     Tests the Dice roll method.
     """
+
     # TODO: Check if these cases should throw exceptions
 
     def test_negativeQuantity(self):
