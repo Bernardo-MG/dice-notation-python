@@ -115,7 +115,8 @@ html_theme_options = {
     'general_info_links': [('Acquire', './acquire.html'),
                            ('Usage', './usage.html')],
     'navbar_links': [('Documentation', [('Acquire', './acquire.html'),
-                                        ('Usage', './usage.html')]),
+                                        ('Usage', './usage.html'),
+                                        ('Dice model', './docs/dice.html')]),
                      ('Info and Reports', [('Reports', './reports.html'),
                                            ('Code docs', './code/index.html')])],
 }

@@ -65,7 +65,6 @@ class Dice(object):
     which a die may physically have are limited by the rules of geometry,
     but there is no reason to take care of that.
     """
-    __metaclass__ = ABCMeta
 
     def __init__(self, quantity, sides):
         super(Dice, self).__init__()

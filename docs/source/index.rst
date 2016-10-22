@@ -23,5 +23,5 @@ Features
    acquire
    usage
    reports
-   code/dice
    code/index
+   docs/dice
