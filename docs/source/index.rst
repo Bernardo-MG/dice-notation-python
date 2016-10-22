@@ -27,3 +27,4 @@ Features
    docs/dice
    docs/grammar
    docs/notation
+   docs/parser

@@ -118,7 +118,8 @@ html_theme_options = {
                                         ('Usage', './usage.html'),
                                         ('Dice model', './docs/dice.html'),
                                         ('Grammar', './docs/grammar.html'),
-                                        ('Notation', './docs/notation.html')]),
+                                        ('Notation', './docs/notation.html'),
+                                        ('Parser', './docs/parser.html')]),
                      ('Info and Reports', [('Reports', './reports.html'),
                                            ('Code docs', './code/index.html')])],
 }
