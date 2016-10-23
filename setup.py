@@ -33,7 +33,7 @@ def read(*names, **kwargs):
     ).read()
 
 # Gets the version for the source folder __init__.py file
-with open('dice-notation/__init__.py', 'rb',
+with open('dice_notation/__init__.py', 'rb',
           encoding='utf-8') as f:
     version_lib = f.read()
     version_lib = _version_re.search(version_lib).group(1)
@@ -86,7 +86,7 @@ setup(
     long_description=read('README.rst'),
     install_requires=[
         'setuptools',
-        'sphinx_bootstrap_theme',
+        'sphinx_docs_theme',
         'twine',
     ],
     tests_require=_tests_require,

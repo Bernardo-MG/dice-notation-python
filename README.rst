@@ -18,20 +18,19 @@ operating with it on any Python application.
     :target: https://pypi.python.org/pypi/dice-notation
     :alt: Dice Notation Tools for Python Pypi package page
 
-.. image:: https://readthedocs.org/projects/dice-notation/badge/?version=latest
-    :target: http://dice-notation.readthedocs.org/en/latest/
-    :alt: Dice Notation Tools for Python latest documentation Status
-.. image:: https://readthedocs.org/projects/dice-notation/badge/?version=develop
-    :target: http://dice-notation.readthedocs.org/en/develop/
-    :alt: Dice Notation Tools for Python development documentation Status
+.. image:: https://img.shields.io/badge/docs-release-blue.svg
+    :target: http://docs.wandrell.com/dice-notation-python
+    :alt: Dice Notation Tools for Python latest documentation
+.. image:: https://img.shields.io/badge/docs-develop-blue.svg
+    :target: http://docs.wandrell.com/development/dice-notation-python/
+    :alt: Dice Notation Tools for Python development documentation
 
 Features
 --------
 
-The library contains the following features:
-
-- API for dice and dice notation, along classes to generate values from them
-- Parser to create API instances from the notation
+- Ply-based parser to generate objects for dice notation
+- Easy-to-use objects to handle the notation, just call the 'roll' method
+- Classes to support plain dice
 
 Documentation
 -------------
@@ -43,7 +42,7 @@ documentation sites:
 - The `development docs`_ are generated from the latest code in the 'develop' branch
 
 You can also create the documentation from the source files, kept in the 'docs'
-folder, with the help of Sphinx. For this use the makefile, or the make.bat
+folder, with the help of `Sphinx`_. For this use the makefile, or the make.bat
 file, contained on that folder.
 
 Prerequisites
@@ -80,8 +79,23 @@ the following command:
 Usage
 -----
 
-The application has been coded in Python, without using any particular
+The application has been coded in Python, and does not require any particular
 framework.
+
+To use it just import the parser::
+
+    from dice_notation.parser import DiceParser
+
+And then use it to parse a dice notation expression::
+
+    parser = DiceParser()
+    dice = parser.parse('1d6+2')
+
+The result can be accessed just by calling the 'roll' method as many times as
+needed, which will generate a new random value each time it is called::
+
+    print(dice.roll())
+    print(dice.roll())
 
 Collaborate
 -----------
@@ -109,10 +123,10 @@ License
 
 The project has been released under the `MIT License`_.
 
-.. _GitHub project page: https://github.com/Bernardo-MG/dice-notation
-.. _latest docs: http://dice-notation.readthedocs.org/en/latest/
-.. _development docs: http://dice-notation.readthedocs.org/en/develop/
+.. _GitHub project page: https://github.com/Bernardo-MG/dice-notation-python
+.. _latest docs: http://docs.wandrell.com/dice-notation-python/
+.. _development docs: http://docs.wandrell.com/development/dice-notation-python/
 .. _Pypi package: https://pypi.python.org/pypi/dice-notation
 .. _MIT License: http://www.opensource.org/licenses/mit-license.php
-.. _project issues tracker: https://github.com/Bernardo-MG/dice-notation/issues
+.. _project issues tracker: https://github.com/Bernardo-MG/dice-notation-python/issues
 .. _Sphinx: http://sphinx-doc.org/

@@ -20,7 +20,7 @@ _version_re = re.compile(r'__version__\s+=\s+(.*)')
 here = path.abspath(path.dirname(__file__))
 
 # Gets the version for the source folder __init__.py file
-with open('../../dice-notation/__init__.py', 'rb',
+with open('../../dice_notation/__init__.py', 'rb',
           encoding='utf-8') as f:
     version_lib = f.read()
     version_lib = _version_re.search(version_lib).group(1)
@@ -29,7 +29,7 @@ with open('../../dice-notation/__init__.py', 'rb',
 # -- Code location --------------------------------------------------------
 
 sys.path.append(os.path.abspath('../..'))
-sys.path.append(os.path.abspath('../../dice-notation'))
+sys.path.append(os.path.abspath('../../dice_notation'))
 
 
 # -- General configuration ------------------------------------------------
@@ -115,8 +115,13 @@ html_theme_options = {
     'general_info_links': [('Acquire', './acquire.html'),
                            ('Usage', './usage.html')],
     'navbar_links': [('Documentation', [('Acquire', './acquire.html'),
-                                        ('Usage', './usage.html')]),
-                     ('Info and Reports', [('Reports', './reports.html')])],
+                                        ('Usage', './usage.html'),
+                                        ('Dice model', './docs/dice.html'),
+                                        ('Grammar', './docs/grammar.html'),
+                                        ('Notation', './docs/notation.html'),
+                                        ('Parser', './docs/parser.html')]),
+                     ('Info and Reports', [('Reports', './reports.html'),
+                                           ('Code docs', './code/index.html')])],
 }
 
 # Output file base name for HTML help builder.

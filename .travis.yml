@@ -24,10 +24,14 @@ matrix:
     # Tests and deploys docs, also runs coverage report
     - python: "3.5"
       env: COVERAGE=true TEST_DOCS=true DEPLOY_DOCS=true
+addons:
+  apt:
+    packages:
+    - sshpass
 
 before_install:
   # Gets scripts
-  - git clone -b v0.2.0 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  - git clone -b v0.4.0 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
@@ -36,6 +40,10 @@ before_install:
 install:
   # tox is required for the tests
   - pip install tox
+  # sphinx is required for the docs
+  - pip install sphinx
+  # Dependencies
+  - pip install --upgrade -r requirements.txt
 script:
   # Code is checked
   - ~/.scripts/python/run_tests.sh true check
@@ -47,4 +55,7 @@ script:
   - ~/.scripts/python/run_tests.sh $DO_COVERAGE coverage
 after_success:
   # Documentation deployment
-  - ~/.scripts/rtd/deploy.sh $DO_DEPLOY_DOCS dice-notation
+  - ~/.scripts/sphinx/build-html.sh $DO_DEPLOY_DOCS docs
+  - cd ~/sphinx/build/html
+  - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_RELEASE $DEPLOY_USERNAME $DEPLOY_PASSWORD $DEPLOY_HOST $DEPLOY_PORT $DEPLOY_PATH_RELEASE
+  - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_DEVELOP $DEPLOY_USERNAME $DEPLOY_PASSWORD $DEPLOY_HOST $DEPLOY_PORT $DEPLOY_PATH_DEVELOP
