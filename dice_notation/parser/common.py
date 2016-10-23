@@ -13,6 +13,9 @@ It contains some interfaces, along a base parser for the parsing library being
 used.
 """
 
+__author__ = 'Bernardo Martínez Garrido'
+__license__ = 'MIT'
+
 
 class Parser(object):
     """

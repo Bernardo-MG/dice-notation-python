@@ -14,6 +14,9 @@ All the classes are rollable, to allow generating a roll from any point of the
 expression.
 """
 
+__author__ = 'Bernardo Martínez Garrido'
+__license__ = 'MIT'
+
 
 class ConstantOperand(Rollable):
     """

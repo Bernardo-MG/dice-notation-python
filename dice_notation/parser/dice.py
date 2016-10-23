@@ -11,6 +11,9 @@ from dice_notation.parser.notation import BinaryOperation, ConstantOperand, \
 Dice notation parsers.
 """
 
+__author__ = 'Bernardo Martínez Garrido'
+__license__ = 'MIT'
+
 
 class DiceParser(PlyParser):
     """
