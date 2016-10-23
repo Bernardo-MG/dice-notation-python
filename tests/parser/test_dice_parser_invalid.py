@@ -19,7 +19,7 @@ class TestIncompleteDice(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 
@@ -56,7 +56,7 @@ class TestInvalidDice(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 
@@ -86,7 +86,7 @@ class TestInvalidNumber(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 

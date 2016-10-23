@@ -20,7 +20,7 @@ class TestDiceAndNumber(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 
@@ -64,7 +64,7 @@ class TestMultipleRoll(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 

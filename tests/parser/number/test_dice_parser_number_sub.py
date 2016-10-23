@@ -19,7 +19,7 @@ class TestSub(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 
@@ -64,7 +64,7 @@ class TestSubLong(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 
@@ -96,7 +96,7 @@ class TestNumericBinaryOperationMixed(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 

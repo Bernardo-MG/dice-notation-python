@@ -20,7 +20,7 @@ class TestSimpleDice(unittest.TestCase):
 
     def setUp(self):
         """
-        Here the tests environment would be prepared.
+        Initializes parser.
         """
         self.parser = DiceParser()
 
