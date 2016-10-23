@@ -14,12 +14,12 @@ __license__ = 'MIT'
 
 class TestMinimalRoll(unittest.TestCase):
     """
-    Tests the Dice roll method.
+    Tests the Dice roll method with dice groups which always return the same value.
     """
 
     def test_empty_rolls0(self):
         """
-        Tests that the minimal possible dice returns 1.
+        Tests that a dice group of zero dice and zero sides returns zero.
         """
         dice = RollableDice(0, 0)
 
@@ -27,7 +27,7 @@ class TestMinimalRoll(unittest.TestCase):
 
     def test_noQuantity_rolls0(self):
         """
-        Tests that the minimal possible dice returns 1.
+        Tests that a dice group of zero dice returns zero.
         """
         dice = RollableDice(0, 6)
 
@@ -35,7 +35,7 @@ class TestMinimalRoll(unittest.TestCase):
 
     def test_noSides_rolls0(self):
         """
-        Tests that the minimal possible dice returns 1.
+        Tests that a dice group of zero sides returns zero.
         """
         dice = RollableDice(1, 0)
 
@@ -43,7 +43,7 @@ class TestMinimalRoll(unittest.TestCase):
 
     def test_minimal_rolls1(self):
         """
-        Tests that the minimal possible dice returns 1.
+        Tests that a dice group of one dice and one sides returns zero.
         """
         dice = RollableDice(1, 1)
 
@@ -99,14 +99,14 @@ class TestRoll(unittest.TestCase):
 
 class TestRollInvalid(unittest.TestCase):
     """
-    Tests the Dice roll method.
+    Tests the Dice roll method with invalid inputs.
     """
 
     # TODO: Check if these cases should throw exceptions
 
     def test_negativeQuantity(self):
         """
-        Tests that quantity of dice is multiplied by the sides when rolling.
+        Tests that rolling with a negative quantity returns nothing.
         """
         dice = RollableDice(-1, 1)
 
@@ -114,7 +114,7 @@ class TestRollInvalid(unittest.TestCase):
 
     def test_negativeSides(self):
         """
-        Tests that quantity of dice is multiplied by the sides when rolling.
+        Tests that rolling with negative sides returns nothing.
         """
         dice = RollableDice(1, -1)
 
@@ -122,7 +122,7 @@ class TestRollInvalid(unittest.TestCase):
 
     def test_noneQuantity(self):
         """
-        Tests that quantity of dice is multiplied by the sides when rolling.
+        Tests that rolling with no quantity returns nothing.
         """
         dice = RollableDice(None, 1)
 
@@ -130,7 +130,7 @@ class TestRollInvalid(unittest.TestCase):
 
     def test_noneSides(self):
         """
-        Tests that quantity of dice is multiplied by the sides when rolling.
+        Tests that rolling with no sides returns nothing.
         """
         dice = RollableDice(1, None)
 

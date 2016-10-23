@@ -15,7 +15,7 @@ __license__ = 'MIT'
 
 class TestSimpleDice(unittest.TestCase):
     """
-    Tests that simple dice expressions can be parsed into the Dice class.
+    Tests that simple dice expressions can be parsed.
     """
 
     def setUp(self):
@@ -33,9 +33,9 @@ class TestSimpleDice(unittest.TestCase):
         self.assertEqual(1, dice.quantity)
         self.assertEqual(6, dice.sides)
 
-    def test_simpleDice_alternativeSeparator(self):
+    def test_simpleDice_upperCaseSeparator(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that the upper case dice separator can be parsed.
         """
         dice = self.parser.parse("1D6")
 
@@ -44,7 +44,7 @@ class TestSimpleDice(unittest.TestCase):
 
     def test_onesDice(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that dice notation with a single dice and a single side can be parsed.
         """
         dice = self.parser.parse("1d1")
 
@@ -53,7 +53,7 @@ class TestSimpleDice(unittest.TestCase):
 
     def test_zeroQuantity(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that dice notation with zero dice is parsed.
         """
         dice = self.parser.parse("0d6")
 
@@ -62,7 +62,7 @@ class TestSimpleDice(unittest.TestCase):
 
     def test_zeroSides(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that dice notation with zero sides is parsed.
         """
         dice = self.parser.parse("1d0")
 
@@ -71,7 +71,7 @@ class TestSimpleDice(unittest.TestCase):
 
     def test_zerosDice(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that dice notation with zero dice and zero sides is parsed.
         """
         dice = self.parser.parse("0d0")
 
@@ -80,7 +80,7 @@ class TestSimpleDice(unittest.TestCase):
 
     def test_max(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that dice notation with the maximum integer values dice is parsed.
         """
         dice = self.parser.parse(str(sys.maxsize) + "d" + str(sys.maxsize))
 

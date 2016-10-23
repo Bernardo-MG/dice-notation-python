@@ -5,7 +5,7 @@ import unittest
 from dice_notation.parser import DiceParser
 
 """
-Dice parser tests for expressions only containing dice.
+Dice parser tests for invalid expressions.
 """
 
 __author__ = 'Bernardo Martínez Garrido'
@@ -14,7 +14,7 @@ __license__ = 'MIT'
 
 class TestIncompleteDice(unittest.TestCase):
     """
-    Tests that simple dice expressions can be parsed into the Dice class.
+    Tests incomplete dice expressions.
     """
 
     def setUp(self):
@@ -25,7 +25,7 @@ class TestIncompleteDice(unittest.TestCase):
 
     def test_noNumbers(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that the dice separator can't be parsed.
         """
         result = self.parser.parse("d")
 
@@ -33,7 +33,7 @@ class TestIncompleteDice(unittest.TestCase):
 
     def test_noQuantity(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that a dice without quantity can't be parsed.
         """
         result = self.parser.parse("d6")
 
@@ -42,7 +42,7 @@ class TestIncompleteDice(unittest.TestCase):
 
     def test_noSides(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that a dice with no sides can't be parsed.
         """
         result = self.parser.parse("1d")
 
@@ -51,7 +51,7 @@ class TestIncompleteDice(unittest.TestCase):
 
 class TestInvalidDice(unittest.TestCase):
     """
-    Tests that simple dice expressions can be parsed into the Dice class.
+    Tests invalid expressions.
     """
 
     def setUp(self):
@@ -62,7 +62,7 @@ class TestInvalidDice(unittest.TestCase):
 
     def test_negativeQuantity(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that a negative dice can't be parsed.
         """
         result = self.parser.parse("-1d6")
 
@@ -71,7 +71,7 @@ class TestInvalidDice(unittest.TestCase):
 
     def test_negativeSides(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that a expression with an incomplete dice can't be parsed.
         """
         result = self.parser.parse("1d-6")
 
@@ -81,7 +81,7 @@ class TestInvalidDice(unittest.TestCase):
 
 class TestInvalidNumber(unittest.TestCase):
     """
-    Tests that simple dice expressions can be parsed into the Dice class.
+    Tests invalid numeric expressions.
     """
 
     def setUp(self):
@@ -92,7 +92,7 @@ class TestInvalidNumber(unittest.TestCase):
 
     def test_doubleNegative(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that a number with two negative markers can't be parsed.
         """
         result = self.parser.parse("--15")
 

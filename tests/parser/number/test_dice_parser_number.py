@@ -14,7 +14,7 @@ __license__ = 'MIT'
 
 class TestNumber(unittest.TestCase):
     """
-    Tests that the parser can work with pure numeric operations.
+    Tests that numeric expressions can be parsed.
     """
 
     def setUp(self):
@@ -25,7 +25,7 @@ class TestNumber(unittest.TestCase):
 
     def test_positive(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that positive numbers can be parsed.
         """
         result = self.parser.parse("5")
 
@@ -33,7 +33,7 @@ class TestNumber(unittest.TestCase):
 
     def test_zero(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that the zero value can be parsed.
         """
         result = self.parser.parse("0")
 
@@ -41,7 +41,7 @@ class TestNumber(unittest.TestCase):
 
     def test_negative(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that negative numbers can be parsed.
         """
         result = self.parser.parse("-5")
 

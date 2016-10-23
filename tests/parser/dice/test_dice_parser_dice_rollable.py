@@ -6,7 +6,7 @@ from dice_notation.dice import Rollable
 from dice_notation.parser import DiceParser
 
 """
-Dice parser tests for expressions only containing dice.
+Dice parser tests for dice expressions, validating the output class.
 """
 
 __author__ = 'Bernardo Martínez Garrido'
@@ -15,7 +15,7 @@ __license__ = 'MIT'
 
 class TestRollable(unittest.TestCase):
     """
-    Tests that the parser can work with pure numeric operations.
+    Tests that dice expressions return instances of Rollable.
     """
 
     def setUp(self):
@@ -26,7 +26,7 @@ class TestRollable(unittest.TestCase):
 
     def test_simpleDice_rollable(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that parsing simple dice notation returns a Rollable.
         """
         dice = self.parser.parse("1d6")
 
@@ -34,7 +34,7 @@ class TestRollable(unittest.TestCase):
 
     def test_add_rollable(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that parsing dice notation additions return a Rollable.
         """
         result = self.parser.parse("1d6+2d20")
 
@@ -42,7 +42,7 @@ class TestRollable(unittest.TestCase):
 
     def test_sub_rollable(self):
         """
-        Tests that numeric subtractions are done correctly.
+        Tests that parsing dice notation subtractions return a Rollable.
         """
         result = self.parser.parse("3d12-1D6")
 

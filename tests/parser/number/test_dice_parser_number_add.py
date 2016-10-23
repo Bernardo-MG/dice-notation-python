@@ -5,7 +5,7 @@ import unittest
 from dice_notation.parser import DiceParser
 
 """
-Dice parser tests for purely numeric expressions.
+Dice parser tests for purely numeric addition expressions.
 """
 
 __author__ = 'Bernardo Martínez Garrido'
@@ -14,7 +14,7 @@ __license__ = 'MIT'
 
 class TestAdd(unittest.TestCase):
     """
-    Tests that the parser can work with pure numeric operations.
+    Tests that numeric addition expressions can be parsed.
     """
 
     def setUp(self):
@@ -25,7 +25,7 @@ class TestAdd(unittest.TestCase):
 
     def test_add(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that additions can be parsed, and the result is the expected one.
         """
         result = self.parser.parse("1+2")
 
@@ -33,7 +33,7 @@ class TestAdd(unittest.TestCase):
 
     def test_add_toNegative(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that additions to a negative value can be parsed, and the result is the expected one.
         """
         result = self.parser.parse("-1+2")
 
@@ -43,7 +43,7 @@ class TestAdd(unittest.TestCase):
 
 class TestAddLong(unittest.TestCase):
     """
-    Tests that the parser can work with pure numeric operations.
+    Tests that long numeric addition expressions can be parsed.
     """
 
     def setUp(self):
@@ -54,7 +54,7 @@ class TestAddLong(unittest.TestCase):
 
     def test_longAdd(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that long additions can be parsed, and the result is the expected one.
         """
         result = self.parser.parse("1+2+3")
 
@@ -62,7 +62,7 @@ class TestAddLong(unittest.TestCase):
 
     def test_longerAdd(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that longer additions can be parsed, and the result is the expected one.
         """
         result = self.parser.parse("1+2+3+4+5")
 

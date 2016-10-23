@@ -6,16 +6,16 @@ from dice_notation.parser.dice import DiceParser
 from dice_notation.parser.notation import ConstantOperand
 
 """
-Dice parser tests for purely numeric expressions.
+Dice parser tests validating the returned classes.
 """
 
 __author__ = 'Bernardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class TestNode(unittest.TestCase):
+class TestNotation(unittest.TestCase):
     """
-    Tests that the parser can work with pure numeric operations.
+    Tests that parsed expressions return a notation class.
     """
 
     def setUp(self):
@@ -26,8 +26,16 @@ class TestNode(unittest.TestCase):
 
     def test_longSub_singleWrap(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that a long subtraction does not wrap the value into more than a single ConstantOperand.
         """
         result = self.parser.parse("1-2-3-4-5").operate()
+
+        self.assertFalse(isinstance(result.constant, ConstantOperand))
+
+    def test_longAdd_singleWrap(self):
+        """
+        Tests that a long addition does not wrap the value into more than a single ConstantOperand.
+        """
+        result = self.parser.parse("1+2+3+4+5").operate()
 
         self.assertFalse(isinstance(result.constant, ConstantOperand))

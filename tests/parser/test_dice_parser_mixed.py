@@ -6,16 +6,16 @@ from dice_notation.dice import Rollable
 from dice_notation.parser import DiceParser
 
 """
-Dice parser tests for expressions only containing dice.
+Dice parser tests for expressions mixing dice and numbers.
 """
 
 __author__ = 'Bernardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class TestDiceAndNumber(unittest.TestCase):
+class TestRollable(unittest.TestCase):
     """
-    Tests that simple dice expressions can be parsed into the Dice class.
+    Tests that mixed expressions return instances of Rollable.
     """
 
     def setUp(self):
@@ -26,7 +26,7 @@ class TestDiceAndNumber(unittest.TestCase):
 
     def test_mixed_addDice(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that parsing a dice addition to a number returns a Rollable.
         """
         result = self.parser.parse("10+1d6")
 
@@ -34,7 +34,7 @@ class TestDiceAndNumber(unittest.TestCase):
 
     def test_mixed_subDice(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that parsing a dice subtraction to a number returns a Rollable.
         """
         result = self.parser.parse("10-1d6")
 
@@ -42,7 +42,7 @@ class TestDiceAndNumber(unittest.TestCase):
 
     def test_mixed_addNumber(self):
         """
-        Tests that a simple dice notation can be parsed.
+        Tests that parsing an addition to a dice returns a Rollable.
         """
         result = self.parser.parse("1d6+10")
 
@@ -50,51 +50,7 @@ class TestDiceAndNumber(unittest.TestCase):
 
     def test_mixed_subNumber(self):
         """
-        Tests that a simple dice notation can be parsed.
-        """
-        result = self.parser.parse("1d6-10")
-
-        self.assertTrue(isinstance(result, Rollable))
-
-
-class TestMultipleRoll(unittest.TestCase):
-    """
-    Tests that simple dice expressions can be parsed into the Dice class.
-    """
-
-    def setUp(self):
-        """
-        Initializes parser.
-        """
-        self.parser = DiceParser()
-
-    def test_mixed_addDice_rollable(self):
-        """
-        Tests that a simple dice notation can be parsed.
-        """
-        result = self.parser.parse("10+1d6")
-
-        self.assertTrue(isinstance(result, Rollable))
-
-    def test_mixed_subDice_rollable(self):
-        """
-        Tests that a simple dice notation can be parsed.
-        """
-        result = self.parser.parse("10-1d6")
-
-        self.assertTrue(isinstance(result, Rollable))
-
-    def test_mixed_addNumber_rollable(self):
-        """
-        Tests that a simple dice notation can be parsed.
-        """
-        result = self.parser.parse("1d6+10")
-
-        self.assertTrue(isinstance(result, Rollable))
-
-    def test_mixed_subNumber_rollable(self):
-        """
-        Tests that a simple dice notation can be parsed.
+        Tests that parsing a subtraction to a dice returns a Rollable.
         """
         result = self.parser.parse("1d6-10")
 

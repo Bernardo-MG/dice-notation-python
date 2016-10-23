@@ -5,7 +5,7 @@ import unittest
 from dice_notation.parser import DiceParser
 
 """
-Dice parser tests for expressions only containing dice.
+Dice parser tests for binary operation expressions only containing dice.
 """
 
 __author__ = 'Bernardo Martínez Garrido'
@@ -14,7 +14,7 @@ __license__ = 'MIT'
 
 class TestDiceBinaryOperation(unittest.TestCase):
     """
-    Tests that the parser can work with pure numeric operations.
+    Tests that binary operation dice expressions can be parsed.
     """
 
     def setUp(self):
@@ -25,7 +25,7 @@ class TestDiceBinaryOperation(unittest.TestCase):
 
     def test_add(self):
         """
-        Tests that numeric additions are done correctly.
+        Tests that dice additions can be parsed.
         """
         result = self.parser.parse("1d6+2d20")
 
@@ -40,7 +40,7 @@ class TestDiceBinaryOperation(unittest.TestCase):
 
     def test_sub(self):
         """
-        Tests that numeric subtractions are done correctly.
+        Tests that dice subtractions can be parsed.
         """
         result = self.parser.parse("3d12-1D6")
 
