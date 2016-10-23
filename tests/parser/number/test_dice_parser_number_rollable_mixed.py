@@ -58,7 +58,7 @@ class TestRollMixedBinaryOp(unittest.TestCase):
         """
         result = self.parser.parse("1+2-3")
 
-        self.assertEqual(3, result.roll())
+        self.assertEqual(0, result.roll())
 
     def test_subAndAdd_roll(self):
         """
@@ -66,4 +66,4 @@ class TestRollMixedBinaryOp(unittest.TestCase):
         """
         result = self.parser.parse("3-1+2")
 
-        self.assertEqual(-1, result.roll())
+        self.assertEqual(4, result.roll())
