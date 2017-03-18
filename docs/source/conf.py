@@ -97,7 +97,7 @@ html_add_permalinks = ''
 
 # Theme options.
 html_theme_options = {
-    'keywords': '',
+    'keywords': 'dice, dice notation, parser, Python, RPG',
     'author_name': ','.join(authors),
     'author_url': 'https://github.com/Bernardo-MG',
     'twitter_id': '@Wandrell_BMG',
