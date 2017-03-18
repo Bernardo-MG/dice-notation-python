@@ -4,26 +4,21 @@
 # Using Python for the project
 language: python
 python:
-  # Python 2.6 is obsolete
-  #- "2.6"
-  # Python 2.7 is set to test the docs in the configuration matrix
-  #- "2.7"
-  # Python 3.2 is obsolete
-  #- "3.2"
-  - "3.3"
+  - "2.7"
   - "3.4"
-  # Python 3.5 is set to test and deploy the docs, and to run the coverage report, in the configuration matrix
-  #- "3.5"
-  - "pypy"
-  - "pypy3"
+  - "3.5"
+  # Python 3.6 is set to test and deploy the docs in the configuration matrix
+  #- "3.6"
+  # PyPy currently is not working with the required dependencies
+  #- "pypy"
+  #- "pypy3"
+env:
+  - TEST_DOCS=true
 matrix:
   include:
-    # Tests docs
-    - python: "2.7"
-      env: TEST_DOCS=true
     # Tests and deploys docs, also runs coverage report
-    - python: "3.5"
-      env: COVERAGE=true TEST_DOCS=true DEPLOY_DOCS=true
+    - python: "3.6"
+      env: TEST_DOCS=true DEPLOY_DOCS=true
 addons:
   apt:
     packages:
@@ -36,7 +31,6 @@ before_install:
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
   - source ~/.scripts/travis/load-travis-environment.sh
-  - source ~/.scripts/travis/load-travis-environment-python.sh
 install:
   # tox is required for the tests
   - pip install tox
@@ -45,14 +39,8 @@ install:
   # Dependencies
   - pip install --upgrade -r requirements.txt
 script:
-  # Code is checked
-  - ~/.scripts/python/run_tests.sh true check
-  # Tests are run
-  - ~/.scripts/python/run_tests.sh true $PYTHON_VERSION_TEST
   # Documentation tests are run
   - ~/.scripts/python/run_tests.sh $DO_TEST_DOCS docs
-  # Documentation tests are run
-  - ~/.scripts/python/run_tests.sh $DO_COVERAGE coverage
 after_success:
   # Documentation deployment
   - ~/.scripts/sphinx/build-html.sh $DO_DEPLOY_DOCS docs

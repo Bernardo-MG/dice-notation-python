@@ -22,7 +22,7 @@ operating with it on any Python application.
     :target: http://docs.wandrell.com/dice-notation-python
     :alt: Dice Notation Tools for Python latest documentation
 .. image:: https://img.shields.io/badge/docs-develop-blue.svg
-    :target: http://docs.wandrell.com/development/dice-notation-python/
+    :target: http://docs.wandrell.com/development/dice-notation-python
     :alt: Dice Notation Tools for Python development documentation
 
 Features
@@ -51,9 +51,9 @@ Prerequisites
 The project has been tested in the following versions of the interpreter:
 
 - Python 2.7
-- Python 3.3
 - Python 3.4
 - Python 3.5
+- Python 3.6
 - Pypy
 - Pypy 3
 
@@ -124,8 +124,8 @@ License
 The project has been released under the `MIT License`_.
 
 .. _GitHub project page: https://github.com/Bernardo-MG/dice-notation-python
-.. _latest docs: http://docs.wandrell.com/dice-notation-python/
-.. _development docs: http://docs.wandrell.com/development/dice-notation-python/
+.. _latest docs: http://docs.wandrell.com/dice-notation-python
+.. _development docs: http://docs.wandrell.com/development/dice-notation-python
 .. _Pypi package: https://pypi.python.org/pypi/dice-notation
 .. _MIT License: http://www.opensource.org/licenses/mit-license.php
 .. _project issues tracker: https://github.com/Bernardo-MG/dice-notation-python/issues

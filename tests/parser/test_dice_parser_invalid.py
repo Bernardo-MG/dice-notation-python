@@ -23,7 +23,7 @@ class TestIncompleteDice(unittest.TestCase):
         """
         self.parser = DiceParser()
 
-    def test_noNumbers(self):
+    def test_onlySeparator(self):
         """
         Tests that the dice separator can't be parsed.
         """
@@ -71,7 +71,7 @@ class TestInvalidDice(unittest.TestCase):
 
     def test_negativeSides(self):
         """
-        Tests that a expression with an incomplete dice can't be parsed.
+        Tests that a dice with a negative side can't be parsed.
         """
         result = self.parser.parse("1d-6")
 
