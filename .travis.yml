@@ -9,8 +9,9 @@ python:
   - "3.5"
   # Python 3.6 is set to test and deploy the docs in the configuration matrix
   #- "3.6"
-  - "pypy"
-  - "pypy3"
+  # PyPy currently is not working with the required dependencies
+  #- "pypy"
+  #- "pypy3"
 env:
   - TEST_DOCS=true
 matrix:
