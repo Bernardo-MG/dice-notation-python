@@ -39,6 +39,8 @@ install:
   # Dependencies
   - pip install --upgrade -r requirements.txt
 script:
+  # Tests are run
+  - ~/.scripts/python/run_tests.sh true $PYTHON_VERSION_TEST
   # Documentation tests are run
   - ~/.scripts/python/run_tests.sh $DO_TEST_DOCS docs
 after_success:
