@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import sys
 from abc import ABCMeta, abstractmethod
 from random import randint
 
