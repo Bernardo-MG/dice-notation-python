@@ -20,9 +20,6 @@ RollableDice is an extension, which allows rolling the dice.
 __author__ = 'Benardo Martínez Garrido'
 __license__ = 'MIT'
 
-if sys.version_info[0] >= 3:
-    xrange = range
-
 
 class Rollable(object, metaclass=ABCMeta):
     """
@@ -131,7 +128,7 @@ class RollableDice(Dice, Rollable):
         elif self.quantity is None or self.sides is None:
             result = None
         elif self.quantity > 0 and self.sides > 0:
-            for x in xrange(self.quantity):
+            for x in range(self.quantity):
                 result += randint(1, self.sides)
         else:
             result = None
