@@ -100,7 +100,7 @@ html_theme_options = {
     'keywords': 'dice, dice notation, parser, Python, RPG',
     'author_name': ','.join(authors),
     'author_url': 'https://github.com/Bernardo-MG',
-    'twitter_id': '@Wandrell_BMG',
+    'twitter_id': '@BernardoMartG',
     'publish_date': datetime.datetime.now().date(),
     'years': '2016',
     'scm_name': 'Github',

@@ -63,7 +63,7 @@ setup(
     version=version_lib,
     description='Dice notation tools',
     author='Bernardo Martínez Garrido',
-    author_email='programming@wandrell.com',
+    author_email='programming@bernardomg.com',
     license='MIT',
     url='https://github.com/Bernardo-MG/dice-notation-python',
     download_url='https://pypi.python.org/pypi/dice-notation',
