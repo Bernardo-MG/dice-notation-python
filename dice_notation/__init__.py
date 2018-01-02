@@ -3,7 +3,7 @@
     Dice Notation Tools for Python
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Dice notation tools
-    :copyright: (c) 2016 by Bernardo Martínez Garrido
+    :copyright: (c) 2016-2018 by Bernardo Martínez Garrido
     :license: MIT, see LICENSE for more details.
 """
 
