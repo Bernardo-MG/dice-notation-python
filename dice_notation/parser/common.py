@@ -17,15 +17,13 @@ __author__ = 'Bernardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class Parser(object):
+class Parser(object, metaclass=ABCMeta):
     """
     Interface for implementing parsers.
 
     It just contains a single method, 'parse', which will receive a value
     and take care of parsing it into another.
     """
-
-    __metaclass__ = ABCMeta
 
     def __init__(self):
         pass
@@ -52,7 +50,7 @@ class PlyParser(Parser):
         try:
             modname = os.path.split(os.path.splitext(__file__)[0])[
                           1] + "_" + self.__class__.__name__
-        except:
+        except Exception:
             modname = "parser" + "_" + self.__class__.__name__
         self.debugfile = modname + ".dbg"
         self.tabmodule = modname + "_" + "parsetab"
