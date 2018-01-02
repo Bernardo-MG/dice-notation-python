@@ -60,7 +60,7 @@ autodoc_member_order = 'groupwise'
 # General information about the project.
 project = 'Dice Notation Tools for Python'
 project_safe = project.replace(' ', '_')
-copyright = u'2016-2018, Bernardo Martínez Garrido'
+copyright = u'2016-%s, Bernardo Martínez Garrido' % datetime.datetime.now().year
 authors = [u'Bernardo Martínez Garrido']
 
 # The version info for the project.
@@ -102,7 +102,7 @@ html_theme_options = {
     'author_url': 'https://github.com/Bernardo-MG',
     'twitter_id': '@BernardoMartG',
     'publish_date': datetime.datetime.now().date(),
-    'years': '2016-2018',
+    'years': '2016-%s' % datetime.datetime.now().year,
     'scm_name': 'Github',
     'scm_url': 'https://github.com/Bernardo-MG/dice-notation-python',
     'ci_name': 'Travis',
