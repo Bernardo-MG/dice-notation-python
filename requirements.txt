@@ -1,6 +1,6 @@
 # Installation and deployment
-setuptools==26.1.1
-twine==1.8.1
+setuptools==38.2.5
+twine==1.9.1
 
 # Documentation
 sphinx-docs-theme==0.2.3
