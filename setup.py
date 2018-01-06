@@ -9,6 +9,7 @@ from codecs import open
 
 from setuptools import find_packages, setup
 from setuptools.command.test import test as test_command
+from distutils.command.clean import clean as clean_command
 from distutils.cmd import Command
 
 """
@@ -50,7 +51,13 @@ class _ToxTester(test_command):
 
     Calls tox for running the tests.
     """
-    user_options = [('profile=', 'p', 'Test profile')]
+    user_options = [
+        ('test-module=', 'm', "Run 'test_suite' in specified module"),
+        ('test-suite=', 's',
+         "Run single test, case or suite (e.g. 'module.test_suite')"),
+        ('test-runner=', 'r', "Test runner to use"),
+        ('profile=', 'p', 'Test profile to use')
+    ]
 
     def initialize_options(self):
         test_command.initialize_options(self)
@@ -80,24 +87,28 @@ class _RequirementsCommand(Command):
     Installs all the requirements defined in the requirements file with pip.
     """
     description = 'install the requirements defined in requirements.txt'
-    user_options = []
+    user_options = [('requirements-file=', 'f', 'requirements file to use')]
 
     def initialize_options(self):
-        pass
+        self.requirements_file = None
 
     def finalize_options(self):
-        pass
+        if self.requirements_file is None:
+            self.requirements_file = 'requirements.txt'
 
     def run(self):
         # import here, cause outside the eggs aren't loaded
         import pip
 
-        with open('requirements.txt') as f:
-            requirements = f.read().splitlines()
+        with open(self.requirements_file) as file:
+            requirements = file.read().splitlines()
 
+        # Removes empty lines
         requirements = filter(lambda k: bool(k.strip()), requirements)
+        # Removes comments
         requirements = filter(lambda k: not k.strip().startswith('#'), requirements)
 
+        # Installs the requirements
         for requirement in requirements:
             pip.main(['install', requirement])
 
