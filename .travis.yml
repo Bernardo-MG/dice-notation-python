@@ -30,6 +30,7 @@ before_install:
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
   - source ~/.scripts/travis/load-travis-environment.sh
+  - source ~/.scripts/travis/load-travis-environment-python.sh
 install:
   # Dependencies
   - pip install --upgrade -r requirements.txt
