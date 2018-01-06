@@ -9,8 +9,6 @@ from codecs import open
 
 from setuptools import find_packages, setup
 from setuptools.command.test import test as test_command
-from distutils.command.clean import clean as clean_command
-from distutils.cmd import Command
 
 """
 PyPI configuration module.
@@ -80,38 +78,6 @@ class _ToxTester(test_command):
         sys.exit(errcode)
 
 
-class _RequirementsCommand(Command):
-    """
-    Requirements command.
-
-    Installs all the requirements defined in the requirements file with pip.
-    """
-    description = 'install the requirements defined in requirements.txt'
-    user_options = [('requirements-file=', 'f', 'requirements file to use')]
-
-    def initialize_options(self):
-        self.requirements_file = None
-
-    def finalize_options(self):
-        if self.requirements_file is None:
-            self.requirements_file = 'requirements.txt'
-
-    def run(self):
-        # import here, cause outside the eggs aren't loaded
-        import pip
-
-        with open(self.requirements_file) as file:
-            requirements = file.read().splitlines()
-
-        # Removes empty lines
-        requirements = filter(lambda k: bool(k.strip()), requirements)
-        # Removes comments
-        requirements = filter(lambda k: not k.strip().startswith('#'), requirements)
-
-        # Installs the requirements
-        for requirement in requirements:
-            pip.main(['install', requirement])
-
 setup(
     name='dice-notation',
     packages=find_packages(),
@@ -145,7 +111,6 @@ setup(
     tests_require=_tests_require,
     extras_require={'test': _tests_require},
     cmdclass={
-        'test': _ToxTester,
-        'requirements': _RequirementsCommand
+        'test': _ToxTester
     },
 )
