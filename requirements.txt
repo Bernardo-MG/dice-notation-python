@@ -2,7 +2,11 @@
 setuptools==38.2.5
 twine==1.9.1
 
+# Testing
+tox==2.9.1
+
 # Documentation
+Sphinx==1.6.5
 sphinx-docs-theme==0.2.3
 Pygments==2.2.0
 
