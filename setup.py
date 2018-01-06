@@ -18,6 +18,9 @@ This is prepared for easing the generation of deployment files.
 
 __license__ = 'MIT'
 
+# Source package
+_source_package = 'dice_notation'
+
 # Regular expression for the version
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
@@ -33,14 +36,18 @@ def read(*names, **kwargs):
     ).read()
 
 # Gets the version for the source folder __init__.py file
-with open('dice_notation/__init__.py', 'rb',
-          encoding='utf-8') as f:
+with open(_source_package + '/__init__.py', 'rb', encoding='utf-8') as f:
     version_lib = f.read()
     version_lib = _version_re.search(version_lib).group(1)
     version_lib = str(ast.literal_eval(version_lib.rstrip()))
 
 
 class _ToxTester(test_command):
+    """
+    Tox test command.
+
+    Calls tox for running the tests.
+    """
     user_options = [('profile=', 'p', 'Test profile')]
 
     def initialize_options(self):
@@ -52,6 +59,8 @@ class _ToxTester(test_command):
         self.test_args = []
 
         if self.profile is not None:
+            # Adds the profile argument
+            # For example: '-e=py36'
             self.test_args.append('-e=' + self.profile)
 
     def run_tests(self):
