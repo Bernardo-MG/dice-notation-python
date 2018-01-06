@@ -17,6 +17,7 @@ needed, which will generate a new random value each time it is called::
     print(dice.roll())
     print(dice.roll())
 
+-------
 Testing
 -------
 

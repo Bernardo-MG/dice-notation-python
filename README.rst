@@ -67,11 +67,9 @@ to install it. For this use the following command;
 
 ``$ pip install dice-notation``
 
-If manual installation is required, the project includes a setup.py file, along
-a makefile allowing direct installation of the library, which can be done with
-the following command:
+If needed, manual installation is possible:
 
-``$ make install``
+``$ python setup.py install``
 
 Usage
 -----
