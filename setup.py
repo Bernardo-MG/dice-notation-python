@@ -41,10 +41,18 @@ with open('dice_notation/__init__.py', 'rb',
 
 
 class _ToxTester(test_command):
+    user_options = [('profile=', 'p', 'Test profile')]
+
+    def initialize_options(self):
+        test_command.initialize_options(self)
+        self.profile = None
+
     def finalize_options(self):
         test_command.finalize_options(self)
         self.test_args = []
-        self.test_suite = True
+
+        if self.profile is not None:
+            self.test_args.append('-e=' + self.profile)
 
     def run_tests(self):
         # import here, cause outside the eggs aren't loaded
