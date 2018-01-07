@@ -20,9 +20,6 @@ __license__ = 'MIT'
 # Source package
 _source_package = 'dice_notation/'
 
-# Regular expression for the version
-_version_re = re.compile(r'__version__\s+=\s+(.*)')
-
 # Test requirements
 _tests_require = ['tox']
 
@@ -36,11 +33,16 @@ def read(*names, **kwargs):
 
 
 # Gets the version for the source folder __init__.py file
-with open(_source_package + '__init__.py', 'rb', encoding='utf-8') as f:
-    version_lib = f.read()
-    version_lib = _version_re.search(version_lib).group(1)
-    version_lib = str(ast.literal_eval(version_lib.rstrip()))
+def read_version(path):
+    # Regular expression for the version
+    _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
+    with open(path + '__init__.py', 'rb', encoding='utf-8') as f:
+        version_lib = f.read()
+        version_lib = _version_re.search(version_lib).group(1)
+        version_lib = str(ast.literal_eval(version_lib.rstrip()))
+
+    return version_lib
 
 setup(
     name='dice-notation',
@@ -48,7 +50,7 @@ setup(
     include_package_data=True,
     package_data={
     },
-    version=version_lib,
+    version=read_version(_source_package),
     description='Dice notation tools',
     author='Bernardo Martínez Garrido',
     author_email='programming@bernardomg.com',
