@@ -4,7 +4,7 @@ from os.path import dirname
 from os.path import join
 
 from setuptools import find_packages, setup
-from bernardomg.tox_test_command import ToxTestCommand
+from tox_test_command import ToxTestCommand
 from version_extractor import extract_version_init
 
 """
