@@ -55,9 +55,10 @@ The project has been tested in the following versions of the interpreter:
 - Python 3.6
 
 All other dependencies are indicated on the requirements.txt file.
-The included makefile can install them with the command:
 
-``$ make requirements``
+These can be installed with:
+
+``$ pip install --upgrade -r requirements.txt``
 
 Installing
 ~~~~~~~~~~
@@ -67,11 +68,9 @@ to install it. For this use the following command;
 
 ``$ pip install dice-notation``
 
-If manual installation is required, the project includes a setup.py file, along
-a makefile allowing direct installation of the library, which can be done with
-the following command:
+If needed, manual installation is possible:
 
-``$ make install``
+``$ python setup.py install``
 
 Usage
 -----
@@ -93,6 +92,19 @@ needed, which will generate a new random value each time it is called::
 
     print(dice.roll())
     print(dice.roll())
+
+Testing
+-------
+
+The tests included with the project can be run with:
+
+``$ python setup.py test``
+
+This will delegate the execution to tox.
+
+It is possible to run just one of the test profiles, in this case the py36 profile:
+
+``$ python setup.py test -p "py36"``
 
 Collaborate
 -----------

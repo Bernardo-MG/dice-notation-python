@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
-import ast
-import re
-import sys
 import io
 from os.path import dirname
 from os.path import join
-from codecs import open
 
 from setuptools import find_packages, setup
-from setuptools.command.test import test as test_command
+from setuptools.command.easy_install import main as install
+
+install(['bernardomg.tox-test-command'])
+install(['bernardomg.version-extractor'])
+
+from tox_test_command import ToxTestCommand
+from version_extractor import extract_version_init
+
 
 """
 PyPI configuration module.
@@ -18,8 +21,8 @@ This is prepared for easing the generation of deployment files.
 
 __license__ = 'MIT'
 
-# Regular expression for the version
-_version_re = re.compile(r'__version__\s+=\s+(.*)')
+# Source package
+_source_package = 'dice_notation/'
 
 # Test requirements
 _tests_require = ['tox']
@@ -32,27 +35,6 @@ def read(*names, **kwargs):
         encoding=kwargs.get('encoding', 'utf8')
     ).read()
 
-# Gets the version for the source folder __init__.py file
-with open('dice_notation/__init__.py', 'rb',
-          encoding='utf-8') as f:
-    version_lib = f.read()
-    version_lib = _version_re.search(version_lib).group(1)
-    version_lib = str(ast.literal_eval(version_lib.rstrip()))
-
-
-class _ToxTester(test_command):
-    def finalize_options(self):
-        test_command.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        # import here, cause outside the eggs aren't loaded
-        import tox
-
-        errcode = tox.cmdline(self.test_args)
-        sys.exit(errcode)
-
 
 setup(
     name='dice-notation',
@@ -60,7 +42,7 @@ setup(
     include_package_data=True,
     package_data={
     },
-    version=version_lib,
+    version=extract_version_init(_source_package),
     description='Dice notation tools',
     author='Bernardo Martínez Garrido',
     author_email='programming@bernardomg.com',
@@ -82,11 +64,13 @@ setup(
     ],
     long_description=read('README.rst'),
     install_requires=[
-        'setuptools',
-        'sphinx_docs_theme',
-        'twine',
+        'ply',
+        'bernardomg.tox-test-command',
+        'bernardomg.version-extractor'
     ],
     tests_require=_tests_require,
     extras_require={'test': _tests_require},
-    cmdclass={'test': _ToxTester},
+    cmdclass={
+        'test': ToxTestCommand
+    },
 )

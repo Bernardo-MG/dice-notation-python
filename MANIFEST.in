@@ -1,8 +1,6 @@
 # Miscellany files
 include LICENSE
 include README.rst
-include Makefile
-include make.bat
 include tox.ini
 include requirements.txt
 include .coveragerc
