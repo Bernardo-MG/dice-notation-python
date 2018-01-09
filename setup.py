@@ -4,8 +4,14 @@ from os.path import dirname
 from os.path import join
 
 from setuptools import find_packages, setup
+from setuptools.command.easy_install import main as install
+
+install(['bernardomg.tox-test-command'])
+install(['bernardomg.version-extractor'])
+
 from tox_test_command import ToxTestCommand
 from version_extractor import extract_version_init
+
 
 """
 PyPI configuration module.

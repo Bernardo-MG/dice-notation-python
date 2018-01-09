@@ -1,5 +1,5 @@
 # Installation and deployment
-setuptools==38.2.5
+setuptools==38.4.0
 twine==1.9.1
 bernardomg.tox-test-command==1.1.4
 bernardomg.version-extractor==1.0.2
