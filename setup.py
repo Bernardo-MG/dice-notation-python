@@ -29,6 +29,7 @@ def read(*names, **kwargs):
         encoding=kwargs.get('encoding', 'utf8')
     ).read()
 
+
 setup(
     name='dice-notation',
     packages=find_packages(),
