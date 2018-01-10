@@ -66,7 +66,7 @@ Installing
 The project is offered as a `Pypi package`_, and using pip is the preferred way
 to install it. For this use the following command;
 
-``$ pip install dice-notation``
+``$ pip3 install dice-notation``
 
 If needed, manual installation is possible:
 
