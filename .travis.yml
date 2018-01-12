@@ -41,7 +41,7 @@ script:
   - ~/.scripts/python/run_tests.sh $DO_TEST_DOCS docs
 after_success:
   # Documentation deployment
-  - ~/.scripts/python/build-docs.sh $DO_DEPLOY_DOCS
+  - ~/.scripts/python/build_docs.sh $DO_DEPLOY_DOCS
   - cd ./build/sphinx/html
   - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_RELEASE $DEPLOY_DOCS_USERNAME $DEPLOY_DOCS_PASSWORD $DEPLOY_DOCS_HOST $DEPLOY_DOCS_PORT $DEPLOY_DOCS_PATH_RELEASE
   - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_DEVELOP $DEPLOY_DOCS_USERNAME $DEPLOY_DOCS_PASSWORD $DEPLOY_DOCS_HOST $DEPLOY_DOCS_PORT $DEPLOY_DOCS_PATH_DEVELOP
