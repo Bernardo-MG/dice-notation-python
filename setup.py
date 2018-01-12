@@ -6,6 +6,7 @@ from os.path import join
 from setuptools import find_packages, setup
 
 from tox_test_command import ToxTestCommand
+from sphinx.setup_command import BuildDoc
 from version_extractor import extract_version_init
 
 
@@ -67,6 +68,7 @@ setup(
     tests_require=_tests_require,
     extras_require={'test': _tests_require},
     cmdclass={
+        'build_docs': BuildDoc,
         'test': ToxTestCommand
     },
 )
