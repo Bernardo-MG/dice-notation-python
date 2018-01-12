@@ -41,9 +41,11 @@ documentation sites:
 - The `latest docs`_ are always generated for the latest release, kept in the 'master' branch
 - The `development docs`_ are generated from the latest code in the 'develop' branch
 
-You can also create the documentation from the source files, kept in the 'docs'
-folder, with the help of `Sphinx`_. For this use the makefile, or the make.bat
-file, contained on that folder.
+The source files for the docs, a small `Sphinx`_ project, are kept in the 'docs folder.
+
+These can be built if needed:
+
+``$ python setup.py build_docs``
 
 Prerequisites
 ~~~~~~~~~~~~~
