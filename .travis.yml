@@ -25,7 +25,7 @@ addons:
 
 before_install:
   # Gets scripts
-  - git clone -b v1.2.0 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  - git clone -b v1.2.1 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
@@ -41,8 +41,7 @@ script:
   - ~/.scripts/python/run_tests.sh $DO_TEST_DOCS docs
 after_success:
   # Documentation deployment
-  - ~/.scripts/sphinx/build-html.sh $DO_DEPLOY_DOCS docs
-  - python setup.py build_docs
-  - cd /build/sphinx/html
+  - ~/.scripts/python/build-docs.sh $DO_DEPLOY_DOCS
+  - cd ./build/sphinx/html
   - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_RELEASE $DEPLOY_DOCS_USERNAME $DEPLOY_DOCS_PASSWORD $DEPLOY_DOCS_HOST $DEPLOY_DOCS_PORT $DEPLOY_DOCS_PATH_RELEASE
   - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_DEVELOP $DEPLOY_DOCS_USERNAME $DEPLOY_DOCS_PASSWORD $DEPLOY_DOCS_HOST $DEPLOY_DOCS_PORT $DEPLOY_DOCS_PATH_DEVELOP
