@@ -11,8 +11,6 @@ python:
   # PyPy currently is not working with the required dependencies
   #- "pypy"
   #- "pypy3"
-env:
-  - TEST_DOCS=true
 matrix:
   include:
     # Tests and deploys docs, also runs coverage report
