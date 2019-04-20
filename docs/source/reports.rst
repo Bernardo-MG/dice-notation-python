@@ -23,4 +23,4 @@ Report       Description
 ============ ===
 
 .. _Coveralls: https://coveralls.io/github/Bernardo-MG/dice-notation-python
-.. _Landscape: https://landscape.io/github/Bernardo-MG/dice-notation-python
+.. _Landscape: http://landscape.io/github/Bernardo-MG/dice-notation-python
