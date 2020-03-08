@@ -27,7 +27,7 @@ options { tokenVocab=DiceNotationLexer; }
  * Rules.
  */
  
-notation
+startRule
 :
    dice
    | number
@@ -48,7 +48,7 @@ operand
 :
    dice
    | number
-   | LPAREN notation RPAREN
+   | LPAREN startRule RPAREN
 ;
 
 dice

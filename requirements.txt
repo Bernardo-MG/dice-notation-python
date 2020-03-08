@@ -13,4 +13,4 @@ sphinx-docs-theme==1.0.1
 Pygments==2.2.0
 
 # Parsing
-antlr4-python3-runtime==4.8
+antlr4-python3-runtime==4.7.2
