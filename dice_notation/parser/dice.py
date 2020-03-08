@@ -1,9 +1,10 @@
 import io
 import logging
-from antlr4 import InputStream, CommonTokenStream
+from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
 
 from dice_notation.parser.DiceNotationLexer import DiceNotationLexer
 from dice_notation.parser.DiceNotationParser import DiceNotationParser
+from dice_notation.parser.DiceNotationListener import DiceNotationListener
 
 
 class DiceParser():
@@ -17,4 +18,10 @@ class DiceParser():
         lexer = DiceNotationLexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = DiceNotationParser(stream)
-        return parser.notation()
+        tree = parser.notation()
+        print(tree.toStringTree(recog=parser))
+
+        walker = ParseTreeWalker()
+        walker.walk(DiceNotationListener(), tree)
+
+        return tree
