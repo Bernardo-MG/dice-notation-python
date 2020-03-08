@@ -48,14 +48,14 @@ class DiceNotationParser ( Parser ):
     symbolicNames = [ u"<INVALID>", u"DSEPARATOR", u"DIGIT", u"ADDOPERATOR", 
                       u"MULTOPERATOR", u"LPAREN", u"RPAREN", u"WS" ]
 
-    RULE_startRule = 0
+    RULE_notation = 0
     RULE_addOp = 1
     RULE_multOp = 2
     RULE_operand = 3
     RULE_dice = 4
     RULE_number = 5
 
-    ruleNames =  [ u"startRule", u"addOp", u"multOp", u"operand", u"dice", 
+    ruleNames =  [ u"notation", u"addOp", u"multOp", u"operand", u"dice", 
                    u"number" ]
 
     EOF = Token.EOF
@@ -76,10 +76,10 @@ class DiceNotationParser ( Parser ):
 
 
 
-    class StartRuleContext(ParserRuleContext):
+    class NotationContext(ParserRuleContext):
 
         def __init__(self, parser, parent=None, invokingState=-1):
-            super(DiceNotationParser.StartRuleContext, self).__init__(parent, invokingState)
+            super(DiceNotationParser.NotationContext, self).__init__(parent, invokingState)
             self.parser = parser
 
         def dice(self):
@@ -95,23 +95,23 @@ class DiceNotationParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return DiceNotationParser.RULE_startRule
+            return DiceNotationParser.RULE_notation
 
         def enterRule(self, listener):
-            if hasattr(listener, "enterStartRule"):
-                listener.enterStartRule(self)
+            if hasattr(listener, "enterNotation"):
+                listener.enterNotation(self)
 
         def exitRule(self, listener):
-            if hasattr(listener, "exitStartRule"):
-                listener.exitStartRule(self)
+            if hasattr(listener, "exitNotation"):
+                listener.exitNotation(self)
 
 
 
 
-    def startRule(self):
+    def notation(self):
 
-        localctx = DiceNotationParser.StartRuleContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 0, self.RULE_startRule)
+        localctx = DiceNotationParser.NotationContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 0, self.RULE_notation)
         try:
             self.state = 15
             self._errHandler.sync(self)
@@ -287,8 +287,8 @@ class DiceNotationParser ( Parser ):
         def LPAREN(self):
             return self.getToken(DiceNotationParser.LPAREN, 0)
 
-        def startRule(self):
-            return self.getTypedRuleContext(DiceNotationParser.StartRuleContext,0)
+        def notation(self):
+            return self.getTypedRuleContext(DiceNotationParser.NotationContext,0)
 
 
         def RPAREN(self):
@@ -333,7 +333,7 @@ class DiceNotationParser ( Parser ):
                 self.state = 35
                 self.match(DiceNotationParser.LPAREN)
                 self.state = 36
-                self.startRule()
+                self.notation()
                 self.state = 37
                 self.match(DiceNotationParser.RPAREN)
                 pass

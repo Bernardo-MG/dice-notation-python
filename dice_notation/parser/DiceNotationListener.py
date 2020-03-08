@@ -4,12 +4,12 @@ from antlr4 import *
 # This class defines a complete listener for a parse tree produced by DiceNotationParser.
 class DiceNotationListener(ParseTreeListener):
 
-    # Enter a parse tree produced by DiceNotationParser#startRule.
-    def enterStartRule(self, ctx):
+    # Enter a parse tree produced by DiceNotationParser#notation.
+    def enterNotation(self, ctx):
         pass
 
-    # Exit a parse tree produced by DiceNotationParser#startRule.
-    def exitStartRule(self, ctx):
+    # Exit a parse tree produced by DiceNotationParser#notation.
+    def exitNotation(self, ctx):
         pass
 
 
