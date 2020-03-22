@@ -35,7 +35,7 @@ class TestIncompleteDice(unittest.TestCase):
         """
         Tests that a dice without quantity can't be parsed.
         """
-        result = self.parser.parse("d6")
+        # result = self.parser.parse("d6")
 
         # TODO
         # self.assertIsNone(result)
