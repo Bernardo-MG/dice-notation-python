@@ -6,5 +6,4 @@ Code docs
 
    dice
    algebra
-   parser_common
    parser_dice
