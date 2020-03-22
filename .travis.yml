@@ -3,14 +3,9 @@
 
 # Using Python for the project
 language: python
-python:
-  - "3.4"
-  - "3.5"
-  # Python 3.6 is set to test and deploy the docs in the configuration matrix
-  #- "3.6"
-  # PyPy currently is not working with the required dependencies
-  #- "pypy"
-  #- "pypy3"
+  python:
+    - "3.7"
+    - "3.8"
 matrix:
   include:
     # Tests and deploys docs, also runs coverage report
@@ -23,7 +18,7 @@ addons:
 
 before_install:
   # Gets scripts
-  - git clone -b v1.2.1 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  - git clone -b v1.2.2 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
