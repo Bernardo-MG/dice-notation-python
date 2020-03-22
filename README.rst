@@ -41,24 +41,37 @@ documentation sites:
 - The `latest docs`_ are always generated for the latest release, kept in the 'master' branch
 - The `development docs`_ are generated from the latest code in the 'develop' branch
 
-You can also create the documentation from the source files, kept in the 'docs'
-folder, with the help of `Sphinx`_. For this use the makefile, or the make.bat
-file, contained on that folder.
+The source files for the docs, a small `Sphinx`_ project, are kept in the 'docs folder.
+
+These can be built if needed:
+
+``python setup.py build_docs``
 
 Prerequisites
 ~~~~~~~~~~~~~
 
 The project has been tested in the following versions of the interpreter:
 
-- Python 3.4
-- Python 3.5
 - Python 3.6
+- Python 3.7
+- Python 3.8
 
 All other dependencies are indicated on the requirements.txt file.
 
 These can be installed with:
 
-``$ pip install --upgrade -r requirements.txt``
+``pip install --upgrade -r requirements.txt``
+
+Building the grammar
+~~~~~~~~~~~~~~~~~~~~
+
+First of all install ANTLR `as told here <https://github.com/antlr/antlr4/blob/master/doc/getting-started.md/>`_.
+
+Afterwards, follow `these indications <https://github.com/antlr/antlr4/blob/master/doc/python-target.md/>`_.
+
+The command to generate the parser will be:
+
+``antlr4 -Dlanguage=Python2 DiceNotation.g4 DiceNotationLexer.g4``
 
 Installing
 ~~~~~~~~~~
@@ -66,11 +79,11 @@ Installing
 The project is offered as a `Pypi package`_, and using pip is the preferred way
 to install it. For this use the following command;
 
-``$ pip3 install dice-notation``
+``pip install dice-notation``
 
 If needed, manual installation is possible:
 
-``$ python setup.py install``
+``python setup.py install``
 
 Usage
 -----
@@ -87,7 +100,7 @@ And then use it to parse a dice notation expression::
     parser = DiceParser()
     dice = parser.parse('1d6+2')
 
-The result can be accessed just by calling the 'roll' method as many times as
+The result can be accessed just by calling the 'value' method as many times as
 needed, which will generate a new random value each time it is called::
 
     print(dice.roll())
@@ -98,13 +111,13 @@ Testing
 
 The tests included with the project can be run with:
 
-``$ python setup.py test``
+``python setup.py test``
 
 This will delegate the execution to tox.
 
 It is possible to run just one of the test profiles, in this case the py36 profile:
 
-``$ python setup.py test -p "py36"``
+``python setup.py test -p "py38"``
 
 Collaborate
 -----------

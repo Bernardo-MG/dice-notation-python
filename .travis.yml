@@ -4,15 +4,8 @@
 # Using Python for the project
 language: python
 python:
-  - "3.4"
-  - "3.5"
-  # Python 3.6 is set to test and deploy the docs in the configuration matrix
-  #- "3.6"
-  # PyPy currently is not working with the required dependencies
-  #- "pypy"
-  #- "pypy3"
-env:
-  - TEST_DOCS=true
+  - "3.7"
+  - "3.8"
 matrix:
   include:
     # Tests and deploys docs, also runs coverage report
@@ -25,7 +18,7 @@ addons:
 
 before_install:
   # Gets scripts
-  - git clone -b v1.2.0 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  - git clone -b v1.2.2 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
@@ -41,7 +34,7 @@ script:
   - ~/.scripts/python/run_tests.sh $DO_TEST_DOCS docs
 after_success:
   # Documentation deployment
-  - ~/.scripts/sphinx/build-html.sh $DO_DEPLOY_DOCS docs
-  - cd ~/sphinx/build/html
+  - ~/.scripts/python/build_docs.sh $DO_DEPLOY_DOCS
+  - cd ./build/sphinx/html
   - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_RELEASE $DEPLOY_DOCS_USERNAME $DEPLOY_DOCS_PASSWORD $DEPLOY_DOCS_HOST $DEPLOY_DOCS_PORT $DEPLOY_DOCS_PATH_RELEASE
   - ~/.scripts/deploy/deploy-ssh.sh $DO_DEPLOY_DOCS_DEVELOP $DEPLOY_DOCS_USERNAME $DEPLOY_DOCS_PASSWORD $DEPLOY_DOCS_HOST $DEPLOY_DOCS_PORT $DEPLOY_DOCS_PATH_DEVELOP

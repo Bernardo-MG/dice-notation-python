@@ -1,93 +1,30 @@
-# -*- coding: utf-8 -*-
-
 import logging
-from operator import add, sub
+from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
 
-from dice_notation.parser.common import PlyParser
-from dice_notation.parser.notation import BinaryOperation, ConstantOperand, \
-    DiceOperand
-
-"""
-Dice notation parsers.
-"""
-
-__author__ = 'Bernardo Martínez Garrido'
-__license__ = 'MIT'
+from dice_notation.parser.DiceNotationLexer import DiceNotationLexer
+from dice_notation.parser.DiceNotationParser import DiceNotationParser
+from dice_notation.parser.DiceNotationListener import DiceNotationListener
 
 
-class DiceParser(PlyParser):
-    """
-    Dice notation parser.
-
-    It handles the most common version of the dice notation.
-    """
-
-    tokens = (
-        'DIGIT', 'DSEPARATOR', 'ADD', 'SUB'
-    )
+class DiceParser():
 
     def __init__(self):
         super(DiceParser, self).__init__()
         self._logger = logging.getLogger("DiceParser")
 
-    # Tokens
+    def parse(self, input):
+        input_stream = InputStream(input + "\n")
+        lexer = DiceNotationLexer(input_stream)
+        stream = CommonTokenStream(lexer)
+        parser = DiceNotationParser(stream)
+        tree = parser.notation()
+        print(tree.toStringTree(recog=parser))
 
-    t_ADD = r'\+'
-    t_DSEPARATOR = r'(d|D)'
-    t_SUB = r'-'
+        walker = ParseTreeWalker()
 
-    def t_DIGIT(self, t):
-        r'\d+'
-        try:
-            t.value = int(t.value)
-        except ValueError:
-            self._logger.error("Integer value too large %s", t.value)
-            t.value = 0
-        # print "parsed number %s" % repr(t.value)
-        return t
+        listener = DiceNotationListener()
+        walker.walk(listener, tree)
 
-    def t_error(self, t):
-        self._logger.error("Illegal character '%s'", t.value[0])
-        t.lexer.skip(1)
-
-    # Parsing rules
-
-    precedence = (
-        ('left', 'ADD', 'SUB'),
-    )
-
-    def p_statement_expr(self, p):
-        'statement : expression'
-        p[0] = p[1]
-        self._logger.debug("Statement %s", p[0])
-
-    def p_expression_dice(self, p):
-        'expression : DIGIT DSEPARATOR DIGIT'
-        p[0] = DiceOperand(p[1], p[3])
-        self._logger.debug("Dice %s", p[0])
-
-    def p_expression_binop(self, p):
-        """
-        expression : expression ADD expression
-                  | expression SUB expression
-        """
-        # print [repr(p[i]) for i in range(0,4)]
-        if p[2] == '+':
-            p[0] = BinaryOperation(add, p[1], p[3])
-        elif p[2] == '-':
-            p[0] = BinaryOperation(sub, p[1], p[3])
-        self._logger.debug("Binary operation %s", p[0])
-
-    def p_expression_digit(self, p):
-        'expression : DIGIT'
-        if isinstance(p[1], ConstantOperand):
-            p[0] = p[1]
-        else:
-            p[0] = ConstantOperand(p[1])
-        self._logger.debug("Constant %s", p[0])
-
-    def p_error(self, p):
-        if p:
-            self._logger.error("Syntax error at '%s'", p.value)
-        else:
-            self._logger.error("Syntax error at EOF")
+        expression = listener.expression()
+        self._logger.debug("Parsed expression %s", expression)
+        return expression

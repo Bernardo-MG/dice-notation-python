@@ -27,7 +27,7 @@ class TestAdd(unittest.TestCase):
         """
         Tests that additions can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("1+2")
+        result = self.parser.parse("1+2").roll()
 
         self.assertEqual(3, result)
 
@@ -35,10 +35,9 @@ class TestAdd(unittest.TestCase):
         """
         Tests that additions to a negative value can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("-1+2")
+        result = self.parser.parse("-1+2").roll()
 
-        # TODO: currently not supported
-        # self.assertEqual(1, result)
+        self.assertEqual(1, result)
 
 
 class TestAddLong(unittest.TestCase):
@@ -56,7 +55,7 @@ class TestAddLong(unittest.TestCase):
         """
         Tests that long additions can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("1+2+3")
+        result = self.parser.parse("1+2+3").roll()
 
         self.assertEqual(6, result)
 
@@ -64,6 +63,6 @@ class TestAddLong(unittest.TestCase):
         """
         Tests that longer additions can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("1+2+3+4+5")
+        result = self.parser.parse("1+2+3+4+5").roll()
 
         self.assertEqual(15, result)

@@ -5,6 +5,5 @@ Code docs
 .. toctree::
 
    dice
-   notation
-   parser_common
+   algebra
    parser_dice
