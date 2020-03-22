@@ -52,9 +52,9 @@ Prerequisites
 
 The project has been tested in the following versions of the interpreter:
 
-- Python 3.4
-- Python 3.5
 - Python 3.6
+- Python 3.7
+- Python 3.8
 
 All other dependencies are indicated on the requirements.txt file.
 
