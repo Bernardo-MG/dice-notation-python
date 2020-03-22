@@ -103,8 +103,8 @@ And then use it to parse a dice notation expression::
 The result can be accessed just by calling the 'value' method as many times as
 needed, which will generate a new random value each time it is called::
 
-    print(dice.value())
-    print(dice.value())
+    print(dice.roll())
+    print(dice.roll())
 
 Testing
 -------
