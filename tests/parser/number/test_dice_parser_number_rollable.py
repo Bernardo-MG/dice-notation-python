@@ -13,42 +13,6 @@ __author__ = 'Bernardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class TestRollable(unittest.TestCase):
-    """
-    Tests that numeric expressions return instances of Rollable.
-    """
-
-    def setUp(self):
-        """
-        Initializes parser.
-        """
-        self.parser = DiceParser()
-
-    def test_number_rollable(self):
-        """
-        Tests that parsing numbers returns a Rollable.
-        """
-        result = self.parser.parse("1")
-
-        self.assertTrue(isinstance(result, Rollable))
-
-    def test_add_rollable(self):
-        """
-        Tests that parsing numeric additions returns a Rollable.
-        """
-        result = self.parser.parse("1+2")
-
-        self.assertTrue(isinstance(result, Rollable))
-
-    def test_sub_rollable(self):
-        """
-        Tests that parsing numeric subtractions returns a Rollable.
-        """
-        result = self.parser.parse("1-2")
-
-        self.assertTrue(isinstance(result, Rollable))
-
-
 class TestRoll(unittest.TestCase):
     """
     Tests that rolling the result from parsing numeric expressions returns the expected value.
@@ -64,22 +28,22 @@ class TestRoll(unittest.TestCase):
         """
         Tests that rolling a parsed number returns the expected value.
         """
-        result = self.parser.parse("1")
+        result = self.parser.parse("1").roll()
 
-        self.assertEqual(1, result.roll())
+        self.assertEqual(1, result)
 
     def test_add_roll(self):
         """
         Tests that rolling a parsed numeric addition returns the expected value.
         """
-        result = self.parser.parse("1+2")
+        result = self.parser.parse("1+2").roll()
 
-        self.assertEqual(3, result.roll())
+        self.assertEqual(3, result)
 
     def test_sub_roll(self):
         """
         Tests that rolling a parsed numeric subtraction returns the expected value.
         """
-        result = self.parser.parse("1-2")
+        result = self.parser.parse("1-2").roll()
 
-        self.assertEqual(-1, result.roll())
+        self.assertEqual(-1, result)

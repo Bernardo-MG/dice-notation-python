@@ -27,7 +27,7 @@ class TestSub(unittest.TestCase):
         """
         Tests that subtractions can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("2-1")
+        result = self.parser.parse("2-1").roll()
 
         self.assertEqual(1, result)
 
@@ -35,7 +35,7 @@ class TestSub(unittest.TestCase):
         """
         Tests that subtractions ending in a negative value can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("1-2")
+        result = self.parser.parse("1-2").roll()
 
         self.assertEqual(-1, result)
 
@@ -43,7 +43,7 @@ class TestSub(unittest.TestCase):
         """
         Tests that subtractions ending in zero can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("1-1")
+        result = self.parser.parse("1-1").roll()
 
         self.assertEqual(0, result)
 
@@ -51,10 +51,9 @@ class TestSub(unittest.TestCase):
         """
         Tests that subtractions of negative values can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("-1-1")
+        result = self.parser.parse("-1-1").roll()
 
-        # TODO: Currently not supported
-        # self.assertEqual(-2, result)
+        self.assertEqual(-2, result)
 
 
 class TestSubLong(unittest.TestCase):
@@ -72,7 +71,7 @@ class TestSubLong(unittest.TestCase):
         """
         Tests that long subtractions can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("1-2-3")
+        result = self.parser.parse("1-2-3").roll()
 
         # TODO: Maybe it should be "-1-2-3"
 
@@ -82,7 +81,7 @@ class TestSubLong(unittest.TestCase):
         """
         Tests that longer subtractions can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("1-2-3-4-5")
+        result = self.parser.parse("1-2-3-4-5").roll()
 
         # TODO: Maybe it should be "-1-2-3-4-5"
 

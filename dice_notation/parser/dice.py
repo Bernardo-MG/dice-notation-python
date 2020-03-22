@@ -27,4 +27,4 @@ class DiceParser():
 
         expression = listener.expression()
         self._logger.debug("Parsed expression %s", expression)
-        return expression.value()
+        return expression

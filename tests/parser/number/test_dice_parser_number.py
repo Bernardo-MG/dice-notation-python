@@ -27,7 +27,7 @@ class TestNumber(unittest.TestCase):
         """
         Tests that positive numbers can be parsed.
         """
-        result = self.parser.parse("5")
+        result = self.parser.parse("5").roll()
 
         self.assertEqual(5, result)
 
@@ -35,7 +35,7 @@ class TestNumber(unittest.TestCase):
         """
         Tests that the zero value can be parsed.
         """
-        result = self.parser.parse("0")
+        result = self.parser.parse("0").roll()
 
         self.assertEqual(0, result)
 
@@ -43,7 +43,6 @@ class TestNumber(unittest.TestCase):
         """
         Tests that negative numbers can be parsed.
         """
-        result = self.parser.parse("-5")
+        result = self.parser.parse("-5").roll()
 
-        # TODO: currently not supported
-        # self.assertEqual(-5, result)
+        self.assertEqual(-5, result)

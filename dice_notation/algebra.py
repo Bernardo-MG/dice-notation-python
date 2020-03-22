@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from abc import ABCMeta, abstractmethod
-from random import randint
+from dice_notation.dice import Rollable
 
 """
 Algebraic classes.
@@ -13,7 +12,7 @@ __author__ = 'Benardo Martínez Garrido'
 __license__ = 'MIT'
 
 
-class BinaryOperation(object):
+class BinaryOperation(Rollable):
     """
     A binary operation. Matching an operator with two operands.
     """
@@ -32,8 +31,8 @@ class BinaryOperation(object):
         return '<class %s>(left=%r, right=%r, operator=%r)' % \
                (self.__class__.__name__, self._left, self._right, self._operator)
 
-    def value(self):
-        return self._operation(self._left.value(), self._right.value())
+    def roll(self):
+        return self._operation(self._left.roll(), self._right.roll())
 
     @property
     def left(self):
@@ -75,7 +74,7 @@ class BinaryOperation(object):
         self._operator = operator
 
 
-class Number(object):
+class Number(Rollable):
     """
     A numeric constant
     """
@@ -91,5 +90,5 @@ class Number(object):
         return '<class %s>(value=%r)' % \
                (self.__class__.__name__, self._value)
 
-    def value(self):
+    def roll(self):
         return self._value

@@ -29,7 +29,7 @@ class TestNumericBinaryOperationMixed(unittest.TestCase):
         """
         Tests that additions followed by subtractions can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("1+2-3")
+        result = self.parser.parse("1+2-3").roll()
 
         self.assertEqual(0, result)
 
@@ -37,6 +37,6 @@ class TestNumericBinaryOperationMixed(unittest.TestCase):
         """
         Tests that subtractions followed by additions can be parsed, and the result is the expected one.
         """
-        result = self.parser.parse("3-1+2")
+        result = self.parser.parse("3-1+2").roll()
 
         self.assertEqual(4, result)
