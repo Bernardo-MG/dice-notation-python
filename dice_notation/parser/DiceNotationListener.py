@@ -80,13 +80,13 @@ class DiceNotationListener(ParseTreeListener):
         digits = iter(ctx.DIGIT())
         if(len(ctx.DIGIT()) > 1):
             # Contains the quantity of dice
-            quantity = next(digits)
+            quantity = int(next(digits).getText())
         else:
             # No quantity of dice defined
             # Defaults to 1
             quantity = 1
 
-        sides = next(digits)
+        sides = int(next(digits).getText())
 
         dice = Dice(quantity, sides)
         self._nodes.append(dice)
