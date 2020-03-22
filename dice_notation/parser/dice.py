@@ -21,6 +21,10 @@ class DiceParser():
         print(tree.toStringTree(recog=parser))
 
         walker = ParseTreeWalker()
-        walker.walk(DiceNotationListener(), tree)
 
-        return tree
+        listener = DiceNotationListener()
+        walker.walk(listener, tree)
+
+        expression = listener.getExpression()
+        self._logger.debug("Parsed expression %s", expression)
+        return expression

@@ -12,59 +12,71 @@ class DiceNotationListener(ParseTreeListener):
         self._logger = logging.getLogger("DiceNotationListener")
         self._nodes = []
 
+    def getExpression(self):
+        expression = None
+
+        self._logger.debug("Checking stack %s for parsed expression", self._nodes)
+        if(self._nodes):
+            expression = self._nodes.pop()
+            self._logger.debug("Got expression %s from stack", expression)
+        else:
+            self._logger.debug("No expression found")
+
+        return expression
+
     # Enter a parse tree produced by DiceNotationParser#notation.
     def enterNotation(self, ctx):
-        self._logger.warning("Entering notation %s", ctx.getText())
+        self._logger.debug("Entering notation %s", ctx.getText())
         pass
 
     # Exit a parse tree produced by DiceNotationParser#notation.
     def exitNotation(self, ctx):
-        self._logger.warning("Exiting notation %s", ctx.getText())
+        self._logger.debug("Exiting notation %s", ctx.getText())
         pass
 
 
     # Enter a parse tree produced by DiceNotationParser#addOp.
     def enterAddOp(self, ctx):
-        self._logger.warning("Entering add %s", ctx.getText())
+        self._logger.debug("Entering add %s", ctx.getText())
         pass
 
     # Exit a parse tree produced by DiceNotationParser#addOp.
     def exitAddOp(self, ctx):
-        self._logger.warning("Exiting add %s", ctx.getText())
+        self._logger.debug("Exiting add %s", ctx.getText())
         pass
 
 
     # Enter a parse tree produced by DiceNotationParser#multOp.
     def enterMultOp(self, ctx):
-        self._logger.warning("Entering multiplication %s", ctx.getText())
+        self._logger.debug("Entering multiplication %s", ctx.getText())
         pass
 
     # Exit a parse tree produced by DiceNotationParser#multOp.
     def exitMultOp(self, ctx):
-        self._logger.warning("Exiting multiplication %s", ctx.getText())
+        self._logger.debug("Exiting multiplication %s", ctx.getText())
         pass
 
 
     # Enter a parse tree produced by DiceNotationParser#operand.
     def enterOperand(self, ctx):
-        self._logger.warning("Entering operand %s", ctx.getText())
+        self._logger.debug("Entering operand %s", ctx.getText())
         pass
 
     # Exit a parse tree produced by DiceNotationParser#operand.
     def exitOperand(self, ctx):
-        self._logger.warning("Exiting operand %s", ctx.getText())
+        self._logger.debug("Exiting operand %s", ctx.getText())
         pass
 
 
     # Enter a parse tree produced by DiceNotationParser#dice.
     def enterDice(self, ctx):
-        self._logger.warning("Entering dice %s", ctx.getText())
+        self._logger.debug("Entering dice %s", ctx.getText())
         pass
 
     # Exit a parse tree produced by DiceNotationParser#dice.
     def exitDice(self, ctx):
-        self._logger.warning("Exiting dice %s", ctx.getText())
-        self._logger.warning("Quantity %s, sides %s", ctx.DIGIT()[0], ctx.DIGIT()[1])
+        self._logger.debug("Exiting dice %s", ctx.getText())
+        self._logger.debug("Quantity %s, sides %s", ctx.DIGIT()[0], ctx.DIGIT()[1])
         digits = iter(ctx.DIGIT())
         if(len(ctx.DIGIT()) > 1):
             # Contains the quantity of dice
@@ -76,17 +88,20 @@ class DiceNotationListener(ParseTreeListener):
 
         sides = next(digits)
 
-        self._nodes.append(Dice(quantity, sides))
+        dice = Dice(quantity, sides)
+        self._nodes.append(dice)
+        self._logger.debug("Added dice %s to stack", dice)
+        self._logger.debug("Currently the stack contains %s", self._nodes)
 
 
     # Enter a parse tree produced by DiceNotationParser#number.
     def enterNumber(self, ctx):
-        self._logger.warning("Entering number %s", ctx.getText())
+        self._logger.debug("Entering number %s", ctx.getText())
         pass
 
     # Exit a parse tree produced by DiceNotationParser#number.
     def exitNumber(self, ctx):
-        self._logger.warning("Exiting number %s", ctx.getText())
+        self._logger.debug("Exiting number %s", ctx.getText())
         pass
 
 
