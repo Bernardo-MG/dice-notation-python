@@ -32,6 +32,9 @@ class BinaryOperation(object):
         return '<class %s>(left=%r, right=%r, operator=%r)' % \
                (self.__class__.__name__, self._left, self._right, self._operator)
 
+    def value(self):
+        return self._operation(self._left.value(), self._right.value())
+
     @property
     def left(self):
         """
@@ -70,3 +73,23 @@ class BinaryOperation(object):
     @operator.setter
     def operator(self, operator):
         self._operator = operator
+
+
+class Number(object):
+    """
+    A numeric constant
+    """
+
+    def __init__(self, value):
+        super(Number, self).__init__()
+        self._value = value
+
+    def __str__(self):
+        return '%s' % (self._value)
+
+    def __repr__(self):
+        return '<class %s>(value=%r)' % \
+               (self.__class__.__name__, self._value)
+
+    def value(self):
+        return self._value

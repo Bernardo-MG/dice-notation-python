@@ -3,7 +3,7 @@ from antlr4 import *
 
 import logging
 from dice_notation.dice import Dice
-from dice_notation.algebra import BinaryOperation
+from dice_notation.algebra import BinaryOperation, Number
 
 # This class defines a complete listener for a parse tree produced by DiceNotationParser.
 class DiceNotationListener(ParseTreeListener):
@@ -132,7 +132,7 @@ class DiceNotationListener(ParseTreeListener):
     # Enter a parse tree produced by DiceNotationParser#number.
     def enterNumber(self, ctx):
         self._logger.debug("Entering number %s", ctx.getText())
-        value = int(ctx.getText())
+        value = Number(int(ctx.getText()))
         self._nodes.append(value)
 
     # Exit a parse tree produced by DiceNotationParser#number.

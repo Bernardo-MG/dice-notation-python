@@ -37,8 +37,7 @@ class TestAdd(unittest.TestCase):
         """
         result = self.parser.parse("-1+2")
 
-        # TODO: currently not supported
-        # self.assertEqual(1, result)
+        self.assertEqual(1, result)
 
 
 class TestAddLong(unittest.TestCase):
