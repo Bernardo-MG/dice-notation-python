@@ -132,7 +132,8 @@ class DiceNotationListener(ParseTreeListener):
     # Enter a parse tree produced by DiceNotationParser#number.
     def enterNumber(self, ctx):
         self._logger.debug("Entering number %s", ctx.getText())
-        pass
+        value = int(ctx.getText())
+        self._nodes.append(value)
 
     # Exit a parse tree produced by DiceNotationParser#number.
     def exitNumber(self, ctx):
