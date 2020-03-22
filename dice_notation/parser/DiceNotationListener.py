@@ -29,7 +29,7 @@ class DiceNotationListener(ParseTreeListener):
         operands = []
 
         # There are as many operands as operators plus one
-        for i in range(0, len(operators)):
+        for i in range(0, len(operators)+1):
             operands.append(self._nodes.pop())
 
         for operator in operators:
@@ -72,7 +72,11 @@ class DiceNotationListener(ParseTreeListener):
     # Exit a parse tree produced by DiceNotationParser#addOp.
     def exitAddOp(self, ctx):
         self._logger.debug("Exiting add %s", ctx.getText())
-        pass
+        operators = []
+        for operator in ctx.ADDOPERATOR():
+            operators.append(operator.getText())
+        expression = self.binary_operation(operators)
+        self._nodes.append(expression)
 
 
     # Enter a parse tree produced by DiceNotationParser#multOp.
@@ -83,7 +87,11 @@ class DiceNotationListener(ParseTreeListener):
     # Exit a parse tree produced by DiceNotationParser#multOp.
     def exitMultOp(self, ctx):
         self._logger.debug("Exiting multiplication %s", ctx.getText())
-        pass
+        operators = []
+        for operator in ctx.MULTOPERATOR():
+            operators.append(operator.getText())
+        expression = self.binary_operation(operators)
+        self._nodes.append(expression)
 
 
     # Enter a parse tree produced by DiceNotationParser#operand.
@@ -119,8 +127,6 @@ class DiceNotationListener(ParseTreeListener):
 
         dice = Dice(quantity, sides)
         self._nodes.append(dice)
-        self._logger.debug("Added dice %s to stack", dice)
-        self._logger.debug("Currently the stack contains %s", self._nodes)
 
 
     # Enter a parse tree produced by DiceNotationParser#number.
