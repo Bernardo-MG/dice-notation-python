@@ -1,7 +1,7 @@
 # Installation and deployment
 setuptools==46.1.1
 twine==3.1.1
-bernardomg.tox-test-command==1.1.4
+bernardomg.tox-test-command==1.1.5
 bernardomg.version-extractor==1.0.2
 
 # Testing
