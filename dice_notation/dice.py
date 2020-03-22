@@ -67,11 +67,11 @@ class Dice(object):
         self._sides = sides
 
     def __str__(self):
-        return '%sd%s' % (self.quantity, self.sides)
+        return '%sd%s' % (self._quantity, self._sides)
 
     def __repr__(self):
         return '<class %s>(quantity=%r, sides=%r)' % \
-               (self.__class__.__name__, self.quantity, self.sides)
+               (self.__class__.__name__, self._quantity, self._sides)
 
     @property
     def quantity(self):

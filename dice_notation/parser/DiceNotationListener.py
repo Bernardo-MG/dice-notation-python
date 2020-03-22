@@ -3,6 +3,7 @@ from antlr4 import *
 
 import logging
 from dice_notation.dice import Dice
+from dice_notation.algebra import BinaryOperation
 
 # This class defines a complete listener for a parse tree produced by DiceNotationParser.
 class DiceNotationListener(ParseTreeListener):
@@ -12,7 +13,7 @@ class DiceNotationListener(ParseTreeListener):
         self._logger = logging.getLogger("DiceNotationListener")
         self._nodes = []
 
-    def getExpression(self):
+    def expression(self):
         expression = None
 
         self._logger.debug("Checking stack %s for parsed expression", self._nodes)
@@ -23,6 +24,34 @@ class DiceNotationListener(ParseTreeListener):
             self._logger.debug("No expression found")
 
         return expression
+
+    def binary_operation(self, operators):
+        operands = []
+
+        # There are as many operands as operators plus one
+        for i in range(0, len(operators)):
+            operands.append(self._nodes.pop())
+
+        for operator in operators:
+            left = operands.pop()
+            right = operands.pop()
+
+            if("+" == operator):
+                func = lambda a, b: a + b
+            elif("-" == operator):
+                func = lambda a, b: a - b
+            elif("*" == operator):
+                func = lambda a, b: a * b
+            elif("/" == operator):
+                func = lambda a, b: a / b
+            else:
+                func = None
+                self._logger.error("The %s operator is invalid", operator)
+            operation = BinaryOperation(left, right, operator, func)
+            self._logger.debug("Parsed operation %s", operation)
+            operands.append(operation)
+
+        return operands.pop()
 
     # Enter a parse tree produced by DiceNotationParser#notation.
     def enterNotation(self, ctx):

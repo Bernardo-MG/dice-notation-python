@@ -25,6 +25,6 @@ class DiceParser():
         listener = DiceNotationListener()
         walker.walk(listener, tree)
 
-        expression = listener.getExpression()
+        expression = listener.expression()
         self._logger.debug("Parsed expression %s", expression)
         return expression
