@@ -33,5 +33,5 @@ It is possible to run just one of the test profiles, in this case the py36 profi
 
 .. code::
 
-    $ python setup.py test -p "py36"
+    $ python setup.py test -p "py38"
 
