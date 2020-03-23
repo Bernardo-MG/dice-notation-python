@@ -28,8 +28,8 @@ operating with it on any Python application.
 Features
 --------
 
-- Ply-based parser to generate objects for dice notation
-- Easy-to-use objects to handle the notation, just call the 'roll' method
+- ANTLR-based parser generates objects from dice notation (BNF grammar included)
+- Easy-to-use model, just call the 'roll' method
 - Classes to support plain dice
 
 Documentation
