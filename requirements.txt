@@ -9,7 +9,7 @@ tox==3.14.5
 
 # Documentation
 Sphinx==2.4.4
-sphinx-docs-theme==0.2.3
+sphinx-docs-theme==1.0.1
 Pygments==2.6.1
 
 # Parsing
