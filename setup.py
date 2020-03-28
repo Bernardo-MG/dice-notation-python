@@ -54,14 +54,14 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Topic :: Games/Entertainment :: Role-Playing'
     ],
     long_description=read('README.rst'),
     install_requires=[
-        'ply',
+        'antlr4-python3-runtime',
         'bernardomg.tox-test-command',
         'bernardomg.version-extractor'
     ],
@@ -71,4 +71,5 @@ setup(
         'build_docs': BuildDoc,
         'test': ToxTestCommand
     },
+    python_requires='>=3.6',
 )

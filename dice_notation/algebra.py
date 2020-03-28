@@ -92,3 +92,16 @@ class Number(Rollable):
 
     def roll(self):
         return self._value
+
+    @property
+    def value(self):
+        """
+        The numeric value.
+
+        :return: the numeric value
+        """
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        self._value = value
