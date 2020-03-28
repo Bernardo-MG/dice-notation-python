@@ -17,6 +17,8 @@ addons:
     - sshpass
 
 before_install:
+  # Upgrades pip
+  - pip install --upgrade pip
   # Gets scripts
   - git clone -b v1.2.2 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
