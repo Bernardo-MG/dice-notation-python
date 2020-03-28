@@ -61,7 +61,7 @@ setup(
     ],
     long_description=read('README.rst'),
     install_requires=[
-        'ply',
+        'antlr4-python3-runtime',
         'bernardomg.tox-test-command',
         'bernardomg.version-extractor'
     ],
@@ -71,4 +71,5 @@ setup(
         'build_docs': BuildDoc,
         'test': ToxTestCommand
     },
+    python_requires='>=3.6',
 )
