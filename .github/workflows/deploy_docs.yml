@@ -1,0 +1,50 @@
+name: Doc deployment
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+
+jobs:
+  deploy_docs:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Create SSH key
+      run: |
+        mkdir -p ~/.ssh/
+        ssh-keyscan -H docs.bernardomg.com >> ~/.ssh/known_hosts
+      shell: bash
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+    - name: Check-out
+      uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Set up Maven settings
+      uses: bernardo-mg/deployment-maven-settings-action@v1.1.2
+      with:
+        version-type: ${{ steps.extract_branch.outputs.branch }}
+      env:
+        DEPLOY_DOCS_USER: ${{ secrets.DEPLOY_DOCS_USER }}
+        DEPLOY_DOCS_PASSWORD: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
+        DEPLOY_DOCS_DEVELOP_USER: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
+        DEPLOY_DOCS_DEVELOP_PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
+        DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_SITE }}
+        DEPLOY_DOCS_DEVELOP_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
+    - name: Build docs
+      run: python setup.py build_docs
+    - name: Move to docs folder
+      run: cd ./build/sphinx/html
+    - name: Deploy development docs
+      if: steps.extract_branch.outputs.branch == 'develop'
+      run: sshpass -p "${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_PATH }}";
+    - name: Deploy release docs
+      if: steps.extract_branch.outputs.branch == 'master'
+      run: sshpass -p "${{ secrets.DEPLOY_DOCS_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_PATH }}";
