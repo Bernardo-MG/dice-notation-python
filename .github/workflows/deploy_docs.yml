@@ -12,11 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Create SSH key
-      run: |
-        mkdir -p ~/.ssh/
-        ssh-keyscan -H ${{ secrets.DEPLOY_DOCS_HOST }} >> ~/.ssh/known_hosts
-      shell: bash
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -38,11 +33,13 @@ jobs:
       run: python setup.py test -p docs
     - name: Build docs
       run: python setup.py build_docs
-    - name: Move to docs folder
-      run: cd ./build/sphinx/html
     - name: Deploy development docs
       if: steps.extract_branch.outputs.branch == 'develop'
-      run: sshpass -p "${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_DEVELOP_PATH }}";
+      run: |
+        cd ./build/sphinx/html
+        sshpass -p "${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_DEVELOP_PATH }}";
     - name: Deploy release docs
       if: steps.extract_branch.outputs.branch == 'master'
-      run: sshpass -p "${{ secrets.DEPLOY_DOCS_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_PATH }}";
+      run: |
+        cd ./build/sphinx/html
+        sshpass -p "${{ secrets.DEPLOY_DOCS_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_PATH }}";
