@@ -27,17 +27,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set up Maven settings
-      uses: bernardo-mg/deployment-maven-settings-action@v1.1.2
-      with:
-        version-type: ${{ steps.extract_branch.outputs.branch }}
-      env:
-        DEPLOY_DOCS_USER: ${{ secrets.DEPLOY_DOCS_USER }}
-        DEPLOY_DOCS_PASSWORD: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
-        DEPLOY_DOCS_DEVELOP_USER: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
-        DEPLOY_DOCS_DEVELOP_PASSWORD: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
-        DEPLOY_DOCS_SITE: ${{ secrets.DEPLOY_DOCS_SITE }}
-        DEPLOY_DOCS_DEVELOP_SITE: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
     - name: Build docs
       run: python setup.py build_docs
     - name: Move to docs folder
