@@ -33,7 +33,7 @@ jobs:
       run: cd ./build/sphinx/html
     - name: Deploy development docs
       if: steps.extract_branch.outputs.branch == 'develop'
-      run: sshpass -p "${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_PATH }}";
+      run: sshpass -p "${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_DEVELOP_PATH }}";
     - name: Deploy release docs
       if: steps.extract_branch.outputs.branch == 'master'
       run: sshpass -p "${{ secrets.DEPLOY_DOCS_PASSWORD }}" scp -o 'StrictHostKeyChecking no' -P "${{ secrets.DEPLOY_DOCS_PORT }}" -r ./* "${{ secrets.DEPLOY_DOCS_USER }}@${{ secrets.DEPLOY_DOCS_HOST }}:${{ secrets.DEPLOY_DOCS_PATH }}";
