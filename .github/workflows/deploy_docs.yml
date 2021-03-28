@@ -27,6 +27,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Tests docs
+      run: python setup.py test -p docs
     - name: Build docs
       run: python setup.py build_docs
     - name: Move to docs folder
