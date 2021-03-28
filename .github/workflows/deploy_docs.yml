@@ -32,6 +32,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install sshpass
+      run: sudo apt-get install sshpass
     - name: Tests docs
       run: python setup.py test -p docs
     - name: Build docs
