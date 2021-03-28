@@ -15,7 +15,7 @@ jobs:
     - name: Create SSH key
       run: |
         mkdir -p ~/.ssh/
-        ssh-keyscan -H docs.bernardomg.com >> ~/.ssh/known_hosts
+        ssh-keyscan -H ${{ secrets.DEPLOY_DOCS_HOST }} >> ~/.ssh/known_hosts
       shell: bash
     - name: Extract branch name
       shell: bash
