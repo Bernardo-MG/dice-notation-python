@@ -24,3 +24,5 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run all tests
       run: python setup.py test -p ${{ matrix.python-version }}
+    - name: Tests docs
+      run: python setup.py test -p docs
