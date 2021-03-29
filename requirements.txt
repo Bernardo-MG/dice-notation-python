@@ -1,5 +1,6 @@
 # Installation and deployment
 setuptools==54.2.0
+wheel==0.36.2
 twine==3.4.1
 bernardomg.tox-test-command==1.1.6
 bernardomg.version-extractor==1.0.3
@@ -9,7 +10,7 @@ tox==3.23.0
 
 # Documentation
 Sphinx==3.5.3
-sphinx-docs-theme==1.0.5
+sphinx-docs-theme==1.0.7
 Pygments==2.8.1
 
 # Parsing
