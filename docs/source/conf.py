@@ -105,8 +105,8 @@ html_theme_options = {
     'years': '2016-%s' % datetime.datetime.now().year,
     'scm_name': 'Github',
     'scm_url': 'https://github.com/Bernardo-MG/dice-notation-python',
-    'ci_name': 'Travis',
-    'ci_url': 'https://travis-ci.org/Bernardo-MG/dice-notation-python',
+    'ci_name': 'Github',
+    'ci_url': 'https://github.com/Bernardo-MG/dice-notation-python/actions',
     'issues_name': 'Github',
     'issues_url': 'https://github.com/Bernardo-MG/dice-notation-python/issues',
     'releases_repos': [
@@ -120,8 +120,7 @@ html_theme_options = {
                                         ('Grammar', './docs/grammar.html'),
                                         ('Notation', './docs/notation.html'),
                                         ('Parser', './docs/parser.html')]),
-                     ('Info and Reports', [('Reports', './reports.html'),
-                                           ('Code docs', './code/index.html')])],
+                     ('Info and Reports', [('Code docs', './code/index.html')])],
 }
 
 # Output file base name for HTML help builder.
