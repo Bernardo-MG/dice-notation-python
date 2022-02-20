@@ -15,7 +15,6 @@ jobs:
       branch: develop
       host: docs.bernardomg.com
     secrets:
-      url: ${{ secrets.DEPLOY_DOCS_DEVELOP_SITE }}
       port: ${{ secrets.DEPLOY_DOCS_DEVELOP_PORT }}
       path: ${{ secrets.DEPLOY_DOCS_DEVELOP_PATH }}
       username: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
@@ -29,7 +28,6 @@ jobs:
       branch: master
       host: docs.bernardomg.com
     secrets:
-      url: ${{ secrets.DEPLOY_DOCS_SITE }}
       port: ${{ secrets.DEPLOY_DOCS_PORT }}
       path: ${{ secrets.DEPLOY_DOCS_PATH }}
       username: ${{ secrets.DEPLOY_DOCS_USER }}
