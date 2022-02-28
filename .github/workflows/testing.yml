@@ -7,28 +7,74 @@ jobs:
     name: Tests
     uses: Bernardo-MG/github-workflow/.github/workflows/python_testing.yml@develop
 
-  deploy_develop_docs:
-    name: Deploy development docs
+  setup_docs:
+    name: Doc deployment preparation
     needs: tests
-    uses: Bernardo-MG/github-workflow/.github/workflows/python_deploy_site.yml@develop
-    with:
-      branch: develop
-      host: docs.bernardomg.com
-    secrets:
-      port: ${{ secrets.DEPLOY_DOCS_DEVELOP_PORT }}
-      path: ${{ secrets.DEPLOY_DOCS_DEVELOP_PATH }}
-      username: ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}
-      password: ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }}
+    outputs:
+      branchName: ${{ steps.extract_branch.outputs.branchName }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install sshpass
+      run: sudo apt-get install sshpass
+    - name: Extract branch name
+      uses: bernardo-mg/extract-branch-name-action@v1
+      id: extract_branch
 
   deploy_docs:
-    name: Deploy docs
-    needs: tests
-    uses: Bernardo-MG/github-workflow/.github/workflows/python_deploy_site.yml@develop
-    with:
-      branch: master
-      host: docs.bernardomg.com
-    secrets:
-      port: ${{ secrets.DEPLOY_DOCS_PORT }}
-      path: ${{ secrets.DEPLOY_DOCS_PATH }}
-      username: ${{ secrets.DEPLOY_DOCS_USER }}
-      password: ${{ secrets.DEPLOY_DOCS_PASSWORD }}
+    name: Deploy development docs
+    environment: deployment_site
+    needs: setup_docs
+    runs-on: ubuntu-latest
+    if: ${{ needs.setup_docs.outputs.branchName == 'master' }}
+    steps:
+    - name: Check-out
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+        cache: 'pip'
+    - name: Update pip
+      run: python -m pip install --upgrade pip
+    - name: Install dependencies
+      run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install sshpass
+      run: sudo apt-get install sshpass
+    - name: Tests docs
+      run: python setup.py test -p docs
+    - name: Build docs
+      run: python setup.py build_docs
+    - name: Move to deployment folder
+      run: cd ./build/sphinx/html
+    - name: Deploy docs
+      run: sshpass -p ${{ secrets.DEPLOY_DOCS_PASSWORD }} scp -o StrictHostKeyChecking=no -P ${{ secrets.DEPLOY_DOCS_PORT }} -r ./src ${{ secrets.DEPLOY_DOCS_USER }}'@'${{ secrets.DEPLOY_DOCS_HOST }}':'${{ secrets.DEPLOY_DOCS_PATH }};
+
+  deploy_develop_docs:
+    name: Deploy development docs
+    environment: deployment_site
+    needs: setup_docs
+    runs-on: ubuntu-latest
+    if: ${{ needs.setup_docs.outputs.branchName == 'master' }}
+    steps:
+    - name: Check-out
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+        cache: 'pip'
+    - name: Update pip
+      run: python -m pip install --upgrade pip
+    - name: Install dependencies
+      run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install sshpass
+      run: sudo apt-get install sshpass
+    - name: Tests docs
+      run: python setup.py test -p docs
+    - name: Build docs
+      run: python setup.py build_docs
+    - name: Move to deployment folder
+      run: cd ./build/sphinx/html
+    - name: Deploy docs
+      run: sshpass -p ${{ secrets.DEPLOY_DOCS_DEVELOP_PASSWORD }} scp -o StrictHostKeyChecking=no -P ${{ secrets.DEPLOY_DOCS_PORT }} -r ./src ${{ secrets.DEPLOY_DOCS_DEVELOP_USER }}'@'${{ secrets.DEPLOY_DOCS_HOST }}':'${{ secrets.DEPLOY_DOCS_DEVELOP_PATH }};
