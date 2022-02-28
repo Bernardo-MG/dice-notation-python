@@ -2,7 +2,7 @@
 from antlr4 import *
 
 import logging
-from dice_notation.dice import Dice
+from dice_notation.dice import RollableDice
 from dice_notation.algebra import BinaryOperation, Number
 
 # This class defines a complete listener for a parse tree produced by DiceNotationParser.
@@ -125,7 +125,7 @@ class DiceNotationListener(ParseTreeListener):
 
         sides = int(next(digits).getText())
 
-        dice = Dice(quantity, sides)
+        dice = RollableDice(quantity, sides)
         self._nodes.append(dice)
 
 
