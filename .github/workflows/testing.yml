@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   tests:
     name: Tests
-    uses: Bernardo-MG/github-workflow/.github/workflows/python_testing.yml@develop
+    uses: Bernardo-MG/github-workflow/.github/workflows/python_testing.yml@v1
 
   setup_docs:
     name: Doc deployment preparation
