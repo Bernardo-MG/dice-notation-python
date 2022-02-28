@@ -93,7 +93,8 @@ html_theme = 'sphinx_docs_theme'
 html_theme_path = sphinx_docs_theme.get_html_theme_path()
 
 # Removes permalink markers
-html_add_permalinks = ''
+html_permalinks = False
+html_permalinks_icon = ''
 
 # Theme options.
 html_theme_options = {

@@ -19,10 +19,10 @@ operating with it on any Python application.
     :alt: Dice Notation Tools for Python Pypi package page
 
 .. image:: https://img.shields.io/badge/docs-release-blue.svg
-    :target: http://docs.bernardomg.com/dice-notation-python
+    :target: https://docs.bernardomg.com/dice-notation-python
     :alt: Dice Notation Tools for Python latest documentation
 .. image:: https://img.shields.io/badge/docs-develop-blue.svg
-    :target: http://docs.bernardomg.com/development/dice-notation-python
+    :target: https://docs.bernardomg.com/development/dice-notation-python
     :alt: Dice Notation Tools for Python development documentation
 
 Features
@@ -146,9 +146,9 @@ License
 The project has been released under the `MIT License`_.
 
 .. _GitHub project page: https://github.com/Bernardo-MG/dice-notation-python
-.. _latest docs: http://docs.bernardomg.com/dice-notation-python
-.. _development docs: http://docs.bernardomg.com/development/dice-notation-python
+.. _latest docs: https://docs.bernardomg.com/dice-notation-python
+.. _development docs: https://docs.bernardomg.com/development/dice-notation-python
 .. _Pypi package: https://pypi.python.org/pypi/dice-notation
-.. _MIT License: http://www.opensource.org/licenses/mit-license.php
+.. _MIT License: https://opensource.org/licenses/mit-license.php
 .. _project issues tracker: https://github.com/Bernardo-MG/dice-notation-python/issues
-.. _Sphinx: http://sphinx-doc.org/
+.. _Sphinx: https://www.sphinx-doc.org
