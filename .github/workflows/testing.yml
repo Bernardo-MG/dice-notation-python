@@ -55,7 +55,7 @@ jobs:
     environment: deployment_site
     needs: setup_docs
     runs-on: ubuntu-latest
-    if: ${{ needs.setup_docs.outputs.branchName == 'master' }}
+    if: ${{ needs.setup_docs.outputs.branchName == 'develop' }}
     steps:
     - name: Check-out
       uses: actions/checkout@v2
