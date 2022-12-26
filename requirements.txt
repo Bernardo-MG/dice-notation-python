@@ -1,6 +1,6 @@
 # Installation and deployment
 setuptools==59.6.0
-wheel==0.37.1
+wheel==0.38.1
 twine==3.8.0
 bernardomg.tox-test-command==1.2.0
 bernardomg.version-extractor==1.1.0
